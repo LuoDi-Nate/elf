@@ -43,6 +43,9 @@
 
     <modules>
         <module>elf-register-impl</module>
+        <module>../elf-dist/elf-clients</module>
+        <module>../elf-dist/elf-servers</module>
+
     </modules>
 
     <dependencies>
