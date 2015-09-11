@@ -1,10 +1,10 @@
-package com.fooluodi.elf.register.common.exception;
+package com.fooluodi.elf.user.register.common.exception;
 
 
 /**
  * Created by di on 7/8/15.
  */
-public class ElfServiceException extends Exception {
+public class ElfSystemException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     protected String errorCode;
@@ -27,32 +27,27 @@ public class ElfServiceException extends Exception {
         this.errorMessage = errorMessage;
     }
 
-    public ElfServiceException(IExceptionCode code) {
+    public ElfSystemException(IExceptionCode code) {
         super(ExceptionHelper.getMessage(code));
         this.errorCode = ExceptionHelper.getCode(code);
         this.errorMessage = this.getMessage();
     }
 
-    public ElfServiceException(IExceptionCode code, String message, Throwable cause) {
+    public ElfSystemException(IExceptionCode code, String message, Throwable cause) {
         super(message, cause);
         this.errorCode = ExceptionHelper.getCode(code);
         this.errorMessage = ExceptionHelper.getMessage(code);
     }
 
-    public ElfServiceException(IExceptionCode code, String message) {
+    public ElfSystemException(IExceptionCode code, String message) {
         super(message);
         this.errorCode = ExceptionHelper.getCode(code);
         this.errorMessage = ExceptionHelper.getMessage(code);
     }
 
-    public ElfServiceException(IExceptionCode code, Throwable cause) {
+    public ElfSystemException(IExceptionCode code, Throwable cause) {
         super(ExceptionHelper.getMessage(code), cause);
         this.errorCode = ExceptionHelper.getCode(code);
         this.errorMessage = this.getMessage();
     }
-
-    public ElfServiceException(String msg) {
-        super(msg);
-    }
-
 }

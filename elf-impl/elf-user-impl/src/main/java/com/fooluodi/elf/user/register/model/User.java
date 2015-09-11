@@ -1,4 +1,4 @@
-package com.fooluodi.elf.register.model;
+package com.fooluodi.elf.user.register.model;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package com.fooluodi.elf.register.mapping;
+package com.fooluodi.elf.user.register.mapping;
 
-import com.fooluodi.elf.register.model.User;
+import com.fooluodi.elf.user.register.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
