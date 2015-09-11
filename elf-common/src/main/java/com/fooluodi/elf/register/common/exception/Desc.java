@@ -1,4 +1,4 @@
-package com.fooluodi.elf.common.exception;
+package com.fooluodi.elf.register.common.exception;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
