@@ -11,7 +11,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>elf-user-impl</artifactId>
-    <name>minos-user-impl</name>
+    <name>elf-user-impl</name>
     <packaging>jar</packaging>
     <version>${elf.version}</version>
 

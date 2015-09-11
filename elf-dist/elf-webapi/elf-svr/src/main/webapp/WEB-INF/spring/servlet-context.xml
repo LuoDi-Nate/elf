@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:aop="http://www.springframework.org/schema/aop"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		    http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		    http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+    <!-- DispatcherServlet Context: defines this servlet's request-processing
+        infrastructure -->
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <default-servlet-handler/>
+    <context:component-scan base-package="me.ele.minos" use-default-filters="false">
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="me.ele.minos" use-default-filters="false">
+        <context:include-filter type="annotation" expression="me.ele.minos.http.HttpUtil"/>
+    </context:component-scan>
+
+    <annotation-driven validator="validator">
+        <argument-resolvers>
+            <beans:bean
+                    class="me.ele.minos.framework.ContextWebArgumentResolver">
+            </beans:bean>
+        </argument-resolvers>
+        <message-converters>
+            <beans:ref bean="jacksonMessageConverter" />
+        </message-converters>
+    </annotation-driven>
+
+    <!-- 启动JSON格式的配置 -->
+    <beans:bean id="jacksonMessageConverter"
+                class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <!-- 解决 HttpMediaTypeNotAcceptableException: Could not find acceptable
+            representation -->
+        <beans:property name="supportedMediaTypes">
+            <beans:list>
+                <beans:value>text/plain;charset=UTF-8</beans:value>
+                <beans:value>text/html;charset=UTF-8</beans:value>
+                <beans:value>application/json;charset=UTF-8</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+</beans:beans>
