@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/data/mongo
+	http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd">
+
+	<!-- 通过工厂Bean创建mongo连接实例,没有密码就把username和password属性删除了 -->
+	<mongo:db-factory host="${mongo.db.host}" port="${mongo.db.port}"
+		dbname="${mongo.db.database}" username="${mongo.db.username}"
+		password="${mongo.db.password}" />
+
+
+	<!-- mongo模板操作对象 -->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+	</bean>
+
+	<!-- MongoDB GridFS Template 支持，操作mongodb存放的文件 -->
+	<mongo:mapping-converter id="converter"
+		db-factory-ref="mongoDbFactory" />
+	<bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+		<constructor-arg ref="converter" />
+	</bean>
+
+</beans>

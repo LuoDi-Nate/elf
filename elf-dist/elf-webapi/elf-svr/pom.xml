@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fooluodi</groupId>
+        <artifactId>elf-webapi</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>elf-svr</artifactId>
+    <packaging>war</packaging>
+    <version>${elf.version}</version>
+    <name>elf-svr</name>
+
+    <properties>
+        <!-- quartz -->
+        <quartz.version>2.2.1</quartz.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.fooluodi</groupId>
+            <artifactId>elf-user-impl</artifactId>
+            <version>${elf.version}</version>
+        </dependency>
+        
+		<!-- Quartz -->
+		<dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+           <exclusions>
+				<exclusion>					
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+        <finalName>elf-svr</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Tests.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

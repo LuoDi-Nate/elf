@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 					http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        				http://www.springframework.org/schema/context
+        				http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<context:component-scan base-package="me.ele.minos.scheduling" use-default-filters="false">
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+    
+	<!-- For times when you need more complex processing, passing data to the scheduled job -->
+	<bean id="unitActivityJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="unitActivityScheduledJob" />
+		<property name="targetMethod" value="executeInternal" />
+	</bean>
+	
+	<bean id="unitActivityJobTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="unitActivityJob" />
+		<property name="cronExpression" value="0 0 1-2 ? * *" />
+	</bean>
+
+
+	<!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->
+	<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="unitActivityJob" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="unitActivityJobTrigger" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
