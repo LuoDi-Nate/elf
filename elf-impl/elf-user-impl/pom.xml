@@ -10,15 +10,15 @@
 
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>elf-register-impl</artifactId>
-    <name>minos-register-impl</name>
+    <artifactId>elf-user-impl</artifactId>
+    <name>minos-user-impl</name>
     <packaging>jar</packaging>
     <version>${elf.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>com.fooluodi</groupId>
-            <artifactId>elf-register</artifactId>
+            <artifactId>elf-user</artifactId>
             <version>${elf.version}</version>
         </dependency>
 

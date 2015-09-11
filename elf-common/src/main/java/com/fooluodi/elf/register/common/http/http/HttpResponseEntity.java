@@ -1,4 +1,4 @@
-package com.fooluodi.elf.common.http.http;
+package com.fooluodi.elf.register.common.http.http;
 
 public class HttpResponseEntity {
 	private String responseContent;

@@ -20,7 +20,7 @@
     <modules>
         <module>../elf-common</module>
 
-        <module>elf-register</module>
+        <module>elf-user</module>
 
         <module>../elf-impl</module>
     </modules>

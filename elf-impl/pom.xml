@@ -42,7 +42,7 @@
     </properties>
 
     <modules>
-        <module>elf-register-impl</module>
+        <module>elf-user-impl</module>
         <module>../elf-dist/elf-clients</module>
         <module>../elf-dist/elf-servers</module>
 
