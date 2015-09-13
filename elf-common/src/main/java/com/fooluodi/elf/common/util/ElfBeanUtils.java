@@ -1,4 +1,4 @@
-package com.fooluodi.elf.register.common.util;
+package com.fooluodi.elf.common.util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

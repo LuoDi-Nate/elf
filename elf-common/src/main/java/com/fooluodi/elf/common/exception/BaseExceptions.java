@@ -1,4 +1,4 @@
-package com.fooluodi.elf.user.register.common.exception;
+package com.fooluodi.elf.common.exception;
 
 public enum BaseExceptions implements IExceptionCode {
 	@Desc("未知异常")

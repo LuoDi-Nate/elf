@@ -24,6 +24,6 @@ public class PingController {
 	public @ResponseBody
 	ResponseEntity<?> ping(){
 		logger.debug("ping");
-		return ResponseEntity.success(1);
+		return ResponseEntity.success("hi, diwa!");
 	}
 }

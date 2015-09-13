@@ -1,8 +1,8 @@
 package me.ele.minos.framework;
 
 
-import com.fooluodi.elf.register.common.exception.Desc;
-import com.fooluodi.elf.register.common.exception.IExceptionCode;
+import com.fooluodi.elf.common.exception.Desc;
+import com.fooluodi.elf.common.exception.IExceptionCode;
 
 public enum WebAPIExceptions implements IExceptionCode {
 

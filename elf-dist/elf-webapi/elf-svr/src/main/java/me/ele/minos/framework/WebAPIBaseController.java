@@ -1,8 +1,8 @@
 package me.ele.minos.framework;
 
-import com.fooluodi.elf.register.common.exception.ElfServiceException;
-import com.fooluodi.elf.register.common.exception.ElfSystemException;
-import com.fooluodi.elf.register.common.util.ElfBeanUtils;
+import com.fooluodi.elf.common.exception.ElfServiceException;
+import com.fooluodi.elf.common.exception.ElfSystemException;
+import com.fooluodi.elf.common.util.ElfBeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

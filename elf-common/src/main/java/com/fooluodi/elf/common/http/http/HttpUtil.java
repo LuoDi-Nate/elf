@@ -1,4 +1,4 @@
-package com.fooluodi.elf.user.register.common.http.http;
+package com.fooluodi.elf.common.http.http;
 
 
 import org.springframework.stereotype.Component;

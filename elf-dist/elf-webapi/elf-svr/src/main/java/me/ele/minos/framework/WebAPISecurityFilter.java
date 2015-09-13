@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by di on 21/8/15.
  * 对于白名单外的请求 验证登陆, 并且将通过验证的请求内加入User参数
  */
-import com.fooluodi.elf.register.common.util.JsonHelper;
+import com.fooluodi.elf.common.util.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.util.WebUtils;

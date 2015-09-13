@@ -1,4 +1,4 @@
-package com.fooluodi.elf.user.register.common.exception;
+package com.fooluodi.elf.common.exception;
 
 public interface IExceptionCode {
 	public String name();

@@ -1,4 +1,4 @@
-package com.fooluodi.elf.register.common.util;
+package com.fooluodi.elf.common.util;
 
 public class JsonException extends RuntimeException {
 
