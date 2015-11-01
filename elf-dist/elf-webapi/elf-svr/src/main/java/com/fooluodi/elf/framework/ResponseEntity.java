@@ -1,4 +1,4 @@
-package me.ele.minos.framework;
+package com.fooluodi.elf.framework;
 
 public class ResponseEntity<E> {
 	private String code;

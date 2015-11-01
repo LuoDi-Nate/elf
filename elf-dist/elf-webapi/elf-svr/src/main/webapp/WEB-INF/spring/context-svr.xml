@@ -5,6 +5,6 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="webapi_security" class="me.ele.minos.framework.WebAPISecurityFilter">
+    <bean id="webapi_security" class="com.fooluodi.elf.framework.WebAPISecurityFilter">
     </bean>
 </beans>

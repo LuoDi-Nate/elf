@@ -1,4 +1,4 @@
-package me.ele.minos.annotations.checkpermission;
+package com.fooluodi.elf.annotations.checkpermission;
 
 
 import java.lang.annotation.*;
