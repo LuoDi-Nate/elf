@@ -23,7 +23,7 @@ import java.util.Map;
 @Controller
 public abstract class WebAPIBaseController {
 
-    private final static Logger baseLogger = LoggerFactory.getLogger(WebAPIBaseController.class);
+    private static final Logger baseLogger = LoggerFactory.getLogger(WebAPIBaseController.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public
@@ -141,8 +141,13 @@ public abstract class WebAPIBaseController {
     @ResponseBody
     ResponseEntity<String> handleThrowable(HttpServletRequest req, Throwable exception) {
         baseLogger.error("Request: {} raised: {}", req.getRequestURL(), exception);
-        ElfSystemException se = new ElfSystemException(WebAPIExceptions.ERR_UNKNOWN);
-        return new ResponseEntity<String>(se.getErrorCode(), se.getErrorMessage(), "未知异常");
+        if(exception.getCause() instanceof ElfServiceException){
+            ElfServiceException midasServiceException = (ElfServiceException)exception.getCause();
+        	return new ResponseEntity<String>(midasServiceException.getErrorCode(), midasServiceException.getMessage(), null);
+        }else{
+        	ElfSystemException se = new ElfSystemException(WebAPIExceptions.ERR_UNKNOWN);
+        	return new ResponseEntity<String>(se.getErrorCode(), se.getErrorMessage(), "未知异常");
+        }
     }
 
 }

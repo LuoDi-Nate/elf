@@ -15,6 +15,10 @@
         <elf.version>0.1.0-SNAPSHOT</elf.version>
         <elf-common.version>0.1.0-SNAPSHOT</elf-common.version>
 
+        <!-- validation-api -->
+        <validation-api-version>1.1.0.Final</validation-api-version>
+        <hibernate-validator-version>5.1.0.Final</hibernate-validator-version>
+
     </properties>
 
     <modules>
@@ -31,6 +35,18 @@
             <groupId>com.fooluodi</groupId>
             <artifactId>elf-common</artifactId>
             <version>${elf-common.version}</version>
+        </dependency>
+
+        <!-- Validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation-api-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator-version}</version>
         </dependency>
 
     </dependencies>

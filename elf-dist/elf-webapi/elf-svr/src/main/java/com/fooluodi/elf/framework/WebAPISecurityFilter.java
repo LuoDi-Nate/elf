@@ -1,29 +1,23 @@
 package com.fooluodi.elf.framework;
 
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-/**
- * Created by di on 21/8/15.
- * 对于白名单外的请求 验证登陆, 并且将通过验证的请求内加入User参数
- */
+import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.common.util.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.util.WebUtils;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+/**
+ * Created by di on 21/8/15.
+ * 放过白名单外的请求
+ */
 
 public class WebAPISecurityFilter implements Filter {
-    final static Logger logger = LoggerFactory.getLogger(WebAPISecurityFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebAPIBaseController.class);
 
     private WebAPISecurityProtocol securityProtocol = new WebAPISecurityProtocol();
 
@@ -59,47 +53,53 @@ public class WebAPISecurityFilter implements Filter {
         }
 
         try{
-
             chain.doFilter(request, response);
         }catch (Throwable t){
             logger.error("some error!", t);
-            handleException((HttpServletResponse)response);
+            handleException((HttpServletResponse)response, t);
         }
 
 
         return;
     }
-    private void handleException(HttpServletResponse response){
+    private void handleException(HttpServletResponse response, Throwable throwable){
         try {
-            ResponseEntity responseEntity = new ResponseEntity("20002", "UNKNOWN_ERROR", null);
-            response.getWriter().write(JsonHelper.transObjToJsonString(responseEntity));
-            response.getWriter().flush();
+        	ResponseEntity responseEntity  = null;
+        	if(throwable.getCause() instanceof ElfServiceException){
+                ElfServiceException midasServiceException = (ElfServiceException) throwable.getCause();
+        		responseEntity = new ResponseEntity(midasServiceException.getErrorCode(), midasServiceException.getMessage(), null);
+        	}else {
+        		responseEntity = new ResponseEntity("20002", "UNKNOWN_ERROR", null);
+			}
+        	response.getWriter().write(JsonHelper.transObjToJsonString(responseEntity));
+        	response.getWriter().flush();
         } catch (IOException e) {
             logger.error("handle error!", e);
         }
     }
 
     private ResponseEntity<?> securityCheck(HttpServletRequest request, HttpServletResponse response) {
-        //token存放在request的hearder里
-//		String access_token = request.getHeader(WebAPISecurityProtocol.HTTP_ACCESS_TOKEN);
-        String access_token = "f4a9fd0b-7aaf-44c1-8982-18338bcefcfe";
-        logger.debug("准备检查token");
-        //get cookie
-        Cookie cookie = WebUtils.getCookie(request, WebAPISecurityProtocol.COFFEE_TOKEN);
-        logger.debug("查看cook" + cookie);
-//        没拿到抛错
-        if (cookie == null) {
-            logger.error("access_token is null , or access_token is empty ");
-            return new ResponseEntity("20001", "没有检测到登陆", null);
-        }
-        access_token = cookie.getValue();
-
-        if (access_token == null || access_token.trim().equals("")) {
-            logger.error("access_token is null , or access_token is empty ");
-            return new ResponseEntity("20001", "没有检测到登陆", null);
-        }
-
-        // 1,通过token，查询coffee-hr系统，验证token的有效性
+//        //token存放在request的hearder里
+////		String access_token = request.getHeader(WebAPISecurityProtocol.HTTP_ACCESS_TOKEN);
+//        String access_token = "f4a9fd0b-7aaf-44c1-8982-18338bcefcfe";
+//        logger.debug("准备检查token");
+//        //get cookie
+//        Cookie cookie = WebUtils.getCookie(request, WebAPISecurityProtocol.COFFEE_TOKEN);
+//        logger.debug("查看cook" + cookie);
+////        没拿到抛错
+//        if (cookie == null) {
+//            logger.error("access_token is null , or access_token is empty ");
+//            return new ResponseEntity("20001", "没有检测到登陆", null);
+//        }
+//        access_token = cookie.getValue();
+//
+//        if (access_token == null || access_token.trim().equals("")) {
+//            logger.error("access_token is null , or access_token is empty ");
+//            return new ResponseEntity("20001", "没有检测到登陆", null);
+//        }
+//
+//        // 1,通过token，查询coffee-hr系统，验证token的有效性
+//        // 获得CoffeeUser对象
 //        MinosUser minosUser = new MinosUser();
 //        try {
 //        	MinosUserService minosUserService = ClientUtil.getContext().getClient(MinosUserService.class);

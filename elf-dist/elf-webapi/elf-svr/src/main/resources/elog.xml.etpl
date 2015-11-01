@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>{{_ .LOG_INFO_TYPE}}</level>
+		</filter>
+		<file>/data/log/anubis.web.base/access.log</file>
+		<!-- 可让每天产生一个日志文件，最多 1000 个，自动回滚 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/log/anubis.web.base/access.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>1000</maxHistory>
+		</rollingPolicy>
+		<encoder/>
+	</appender>
+	
+	<appender name="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<file>/data/log/error/anubis.web.base/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/log/error/anubis.web.base/error.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>1000</maxHistory>
+		</rollingPolicy>
+		<encoder/>
+	</appender>
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder />
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+	</appender>
+	<root>
+		<appender-ref ref="FILE" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+	<!-- <logger name="me.ele.core.heartbeat" level="OFF" /> -->
+</configuration>

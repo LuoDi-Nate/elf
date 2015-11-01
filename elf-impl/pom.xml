@@ -56,7 +56,7 @@
             <artifactId>elf-common</artifactId>
             <version>${elf-common.version}</version>
         </dependency>
-        
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -94,11 +94,11 @@
             <version>${mongo-java-driver.version}</version>
         </dependency>
         <dependency>
-        <groupId>org.springframework.data</groupId>
+            <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
             <version>${spring-data-mongodb.version}</version>
             <exclusions>
-                <exclusion>                 
+                <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>jcl-over-slf4j</artifactId>
                 </exclusion>
@@ -107,23 +107,23 @@
 
         <!-- Logging -->
         <!-- Logging with SLF4J & LogBack -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback-version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-api</artifactId>-->
+        <!--<version>${slf4j-version}</version>-->
+        <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>ch.qos.logback</groupId>-->
+        <!--<artifactId>logback-classic</artifactId>-->
+        <!--<version>${logback-version}</version>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>ch.qos.logback</groupId>-->
+        <!--<artifactId>logback-core</artifactId>-->
+        <!--<version>${logback-version}</version>-->
+        <!--</dependency>-->
 
         <!-- Test -->
         <!-- Test Artifacts -->
@@ -155,11 +155,11 @@
         </dependency>
 
         <!-- apache StringUtil -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${org-apache-commons-version}</version>
-        </dependency>
+        </dependency> -->
 
         <!-- datebase c3p0 pool -->
         <dependency>

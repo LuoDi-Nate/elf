@@ -8,11 +8,10 @@
 			http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Root Context: defines shared resources visible to all other web components -->
+    <context:component-scan base-package="com.fooluodi.elf.webapi"/>
+
 	
-	<!--<context:component-scan base-package="me.ele.minos">-->
-		<!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
-    <!--</context:component-scan>-->
-    <!--<bean class="me.ele.minos.listener.StartupListener" init-method="initMethod"/>-->
+    <bean id="webapi_security" class="com.fooluodi.elf.framework.WebAPISecurityFilter"/>
 
     <bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding">
@@ -20,56 +19,24 @@
         </property>
     </bean>
 
-    <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">-->
-        <!--<property name="basenames">-->
-            <!--<list>-->
-                <!--<value>classpath:messages.properties</value>-->
-            <!--</list>-->
-        <!--</property>-->
-        <!--<property name="defaultEncoding" value="UTF-8"/>-->
-        <!--<property name="fileEncodings" value="UTF-8"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="locations">-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
             <!--&lt;!&ndash;本地环境 &ndash;&gt;-->
-            <!--<list>-->
-                <!--<value>classpath:database.properties</value>-->
-                <!--<value>classpath:redis.properties</value>-->
-                <!--<value>classpath:map.properties</value>-->
-                <!--&lt;!&ndash; -->
-                <!--<value>classpath:mongodb.properties</value>-->
-                <!--&ndash;&gt;-->
-            <!--</list>-->
-        <!--</property>-->
-        <!--<property name="fileEncoding" value="UTF-8"/>-->
-        <!--<property name="ignoreResourceNotFound" value="false"/>-->
-        <!--<property name="ignoreUnresolvablePlaceholders" value="true"/>-->
-    <!--</bean>-->
+            <list>
+                <value>classpath:database.properties</value>
+                <value>classpath:redis.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="ignoreResourceNotFound" value="false"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
 
-    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">-->
-        <!--<property name="messageInterpolator">-->
-            <!--<bean class="me.ele.minos.framework.SpringMessageSourceMessageInterpolator"/>-->
-        <!--</property>-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash; 将多个配置文件位置放到列表中 &ndash;&gt;-->
-    <!--<bean id="propertyResources" class="java.util.ArrayList">-->
-        <!--<constructor-arg>-->
-            <!--<list>-->
-                <!--&lt;!&ndash; 推荐使用file的方式引入，这样可以将配置和代码分离 &ndash;&gt;-->
-                 <!--<value>classpath:napos.properties</value>-->
-                 <!--<value>classpath:search.properties</value>-->
-            <!--</list>-->
-        <!--</constructor-arg>-->
-    <!--</bean>-->
-    <!--&lt;!&ndash; 读取properties &ndash;&gt;-->
-	<!--<bean class="me.ele.minos.util.ConfigUtils">-->
-		<!--<property name="ignoreResourceNotFound" value="true"/>-->
-		<!--<property name="locations" ref="propertyResources"/>-->
-	<!--</bean>-->
-
-    <import resource="context-svr.xml"></import>
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="messageInterpolator">
+            <bean class="com.fooluodi.elf.framework.SpringMessageSourceMessageInterpolator"/>
+        </property>
+    </bean>
 
 </beans>
 

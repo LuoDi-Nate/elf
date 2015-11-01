@@ -1,0 +1,4 @@
+db.driver=com.mysql.jdbc.Driver
+db.url={{_ .DB_URL_PORT_DATABASE}}
+db.username={{_ .DB_USER}}
+db.password={{_ .DB_PASSWD}}

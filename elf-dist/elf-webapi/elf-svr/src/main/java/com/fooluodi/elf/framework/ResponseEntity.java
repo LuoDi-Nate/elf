@@ -43,6 +43,9 @@ public class ResponseEntity<E> {
 	public static <E> ResponseEntity<E> fail(E data) {
 		return new ResponseEntity<E>("500", "failed", data);
 	}
+	public static <E> ResponseEntity<E> fail(String code, String msg, E data){
+		return new ResponseEntity<E>(code, msg, data);
+	}
 	public static <E> ResponseEntity<E> fail(String msg, E data) {
 		return new ResponseEntity<E>("500", msg, data);
 	}

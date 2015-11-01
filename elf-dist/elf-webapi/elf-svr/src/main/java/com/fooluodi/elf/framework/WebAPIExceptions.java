@@ -16,12 +16,5 @@ public enum WebAPIExceptions implements IExceptionCode {
 	ERR_UNKNOWN(),
 
 	@Desc("校验错误")
-	ERR_WEBAPI_VALIDATION(),
-
-	@Desc("找不到access_token")
-	ERR_WEBAPI_ACCESS_TOKEN_NOT_FOUND(),
-
-	@Desc("当前用户没有业务包")
-	ERR_NO_SOURCE_UNIT_FOR_KARMA_USER();
-
+	ERR_WEBAPI_VALIDATION()
 }
