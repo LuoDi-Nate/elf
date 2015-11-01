@@ -1,4 +1,4 @@
-package me.ele.minos.framework;
+package com.fooluodi.elf.framework;
 
 
 import com.fooluodi.elf.register.common.exception.Desc;

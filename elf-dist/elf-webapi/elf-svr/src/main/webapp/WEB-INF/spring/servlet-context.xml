@@ -14,7 +14,7 @@
 			http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
     <default-servlet-handler/>
-    <context:component-scan base-package="me.ele.midas.webapi" use-default-filters="false">
+    <context:component-scan base-package="com.fooluodi.elf.webapi" use-default-filters="false">
     	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -33,10 +33,16 @@
         </beans:property>
     </beans:bean>
 
+    <beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <beans:property name="messageInterpolator">
+            <beans:bean class="com.fooluodi.elf.framework.SpringMessageSourceMessageInterpolator"/>
+        </beans:property>
+    </beans:bean>
+
     <annotation-driven validator="validator">
         <argument-resolvers>
             <beans:bean
-                    class="me.ele.midas.framework.ContextWebArgumentResolver">
+                    class="com.fooluodi.elf.framework.ContextWebArgumentResolver">
             </beans:bean>
         </argument-resolvers>
         <message-converters>
