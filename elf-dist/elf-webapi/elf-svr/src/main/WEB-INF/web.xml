@@ -12,14 +12,11 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
-			<!--/WEB-INF/spring/context-svr.xml-->
-			<!--/WEB-INF/spring/quartz-context.xml-->
-			<!--/WEB-INF/spring/database-config.xml-->
-			<!--
-			/WEB-INF/spring/mongo-config.xml
-			 -->
 		</param-value>
 	</context-param>
+    <!--<listener>-->
+        <!--<listener-class>me.ele.anubis.listener.SoaClientListener</listener-class>-->
+    <!--</listener>-->
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -49,6 +46,16 @@
 		<filter-name>multipartFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- 
+	<filter>
+		<filter-name>testFilter</filter-name>
+		<filter-class>me.ele.anubis.signature.TestIntercept</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>testFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	 -->
 	<filter>
 		<filter-name>httpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
@@ -89,4 +96,13 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
+	<!-- 测试组装karmaUser数据 -->
+	<!--<filter>-->
+	<!--<filter-name>minosUserFilter</filter-name>-->
+	<!--&lt;!&ndash;<filter-class>me.ele.karma.svr.web.framework.KarmaUserFilter</filter-class>&ndash;&gt;-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+	<!--<filter-name>karamUserTestFilter</filter-name>-->
+	<!--<url-pattern>/*</url-pattern>-->
+	<!--</filter-mapping>-->
 </web-app>

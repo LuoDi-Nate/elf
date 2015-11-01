@@ -13,28 +13,11 @@
 		    http://www.springframework.org/schema/aop
 			http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-    <!-- DispatcherServlet Context: defines this servlet's request-processing
-        infrastructure -->
-    <!-- Enables the Spring MVC @Controller programming model -->
     <default-servlet-handler/>
-    <context:component-scan base-package="me.ele.minos" use-default-filters="false">
+    <context:component-scan base-package="me.ele.midas.webapi" use-default-filters="false">
     	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <context:component-scan base-package="me.ele.minos" use-default-filters="false">
-        <context:include-filter type="annotation" expression="me.ele.minos.http.HttpUtil"/>
-    </context:component-scan>
-
-    <annotation-driven validator="validator">
-        <argument-resolvers>
-            <beans:bean
-                    class="me.ele.minos.framework.ContextWebArgumentResolver">
-            </beans:bean>
-        </argument-resolvers>
-        <message-converters>
-            <beans:ref bean="jacksonMessageConverter" />
-        </message-converters>
-    </annotation-driven>
 
     <!-- 启动JSON格式的配置 -->
     <beans:bean id="jacksonMessageConverter"
@@ -49,5 +32,16 @@
             </beans:list>
         </beans:property>
     </beans:bean>
+
+    <annotation-driven validator="validator">
+        <argument-resolvers>
+            <beans:bean
+                    class="me.ele.midas.framework.ContextWebArgumentResolver">
+            </beans:bean>
+        </argument-resolvers>
+        <message-converters>
+            <beans:ref bean="jacksonMessageConverter" />
+        </message-converters>
+    </annotation-driven>
 
 </beans:beans>

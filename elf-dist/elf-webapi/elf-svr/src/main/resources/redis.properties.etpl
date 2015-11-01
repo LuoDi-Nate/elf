@@ -1,0 +1,8 @@
+redis.host={{_ .REDIS_HOST}}
+redis.port={{_ .REDIS_PORT}}
+redis.timeout={{_ .REDIS_TIMEOUT}}
+redis.pool.minIdle={{_ .REDIS_MIN_IDLE}}
+redis.pool.maxIdle={{_ .REDIS_MAX_IDLE}}
+redis.pool.maxWaitMillis={{_ .REDIS_MAX_WAIT}}
+redis.pool.testOnBorrow={{_ .REDIS_TEST_ON_BORROW}}
+redis.pool.testOnReturn={{_ .REDIS_TEST_ON_RETURN}}
