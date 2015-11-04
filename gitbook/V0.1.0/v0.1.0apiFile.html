@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Elf V0.1.0API文档</title>
+
+</head>
+<body>
+<h2>Elf V0.1.0API文档</h2>
+
+<h3>1.发送短信验证码</h3>
+
+<h4>描述</h4>
+
+<pre><code>用户注册时,需要填写手机号码,通过验证的手机号将成为用户唯一标识.
+此接口用于向指定手机号发送验证码
+调用前应该做手机号格式弱校验
+</code></pre>
+
+<h4>URL</h4>
+
+<pre><code>GET
+${elf.url}/register?target_phone=13011112222
+</code></pre>
+
+<h5>输入参数</h5>
+
+<table>
+<thead>
+<tr>
+<th> 名称         </th>
+<th>      说明    </th>
+<th> 必填  </th>
+<th>传参位置</th>
+<th>          参数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target_phone</td>
+<td>目标手机号码</td>
+<td>是</td>
+<td>url</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5>返回参数</h5>
+
+<pre><code>成功
+{
+    "code": "200",
+    "msg": "success",
+    "data": {
+            }
+}
+</code></pre>
+
+<pre><code>失败
+{
+    "code": "501",
+    "msg": "请于60秒后发起",
+    "data": {
+            }
+}
+</code></pre>
+
+<h3>2.注册</h3>
+
+<h4>描述</h4>
+
+<pre><code>用户得到短信验证码后,注册时调用该接口,
+调用时须带用户手机号, 验证码
+如果注册成功会返回user的详情.
+userId会做混淆加密, 不会暴露用户真实注册序列.
+</code></pre>
+
+<h4>URL</h4>
+
+<pre><code>POST
+${elf.url}/user
+</code></pre>
+
+<h5>输入参数</h5>
+
+<table>
+<thead>
+<tr>
+<th> 名称         </th>
+<th>      说明    </th>
+<th> 必填  </th>
+<th>传参位置</th>
+<th>          参数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target_phone</td>
+<td>目标手机号码</td>
+<td>是</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>check_code</td>
+<td>用户手机验证码</td>
+<td>是</td>
+<td>body</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5>返回参数</h5>
+
+<pre><code>成功
+{
+    "code": "200",
+    "msg": "success",
+    "data": {
+                "user_id":202020,
+                "TOKEN":"ee11cbb19052e40b07aac0ca060c23ee"
+            }
+}
+</code></pre>
+
+<pre><code>失败
+{
+    "code": "510",
+    "msg": "验证码不匹配",
+    "data": {
+            }
+}
+</code></pre>
+
+<h3>3.登陆</h3>
+
+<h4>描述</h4>
+
+<pre><code>目前用户登陆也依靠短信验证功能登陆
+</code></pre>
+
+<h4>URL</h4>
+
+<pre><code>POST
+${elf.url}/login
+</code></pre>
+
+<h5>输入参数</h5>
+
+<table>
+<thead>
+<tr>
+<th> 名称         </th>
+<th>      说明    </th>
+<th> 必填  </th>
+<th>传参位置</th>
+<th>          参数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target_phone</td>
+<td>目标手机号码</td>
+<td>是</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>check_code</td>
+<td>用户手机验证码</td>
+<td>是</td>
+<td>body</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5>返回参数</h5>
+
+<pre><code>成功
+{
+    "code": "200",
+    "msg": "success",
+    "data": {
+                "user_id":202020,
+                "TOKEN":"ee11cbb19052e40b07aac0ca060c23ee"
+            }
+}
+</code></pre>
+
+<pre><code>失败
+{
+    "code": "510",
+    "msg": "验证码不匹配",
+    "data": {
+            }
+}
+</code></pre>
+
+<h3>4.获取用户详情</h3>
+
+<h4>描述</h4>
+
+<pre><code>任何时候需要用户详情时调用次接口,
+需要在header里面携带用户登陆后的TOKEN信息.
+</code></pre>
+
+<h4>URL</h4>
+
+<pre><code>GET
+${elf.url}/user/${user_id}
+</code></pre>
+
+<h5>输入参数</h5>
+
+<table>
+<thead>
+<tr>
+<th> 名称         </th>
+<th>      说明    </th>
+<th> 必填  </th>
+<th>传参位置</th>
+<th>          参数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TOKEN</td>
+<td>用户身份令牌</td>
+<td>是</td>
+<td>header</td>
+<td>String</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>用户编号</td>
+<td>是</td>
+<td>url</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5>返回参数</h5>
+
+<pre><code>成功
+{
+    "code": "200",
+    "msg": "success",
+    "data": {
+                "user_phone":"13011112222",
+                "real_name":"奈门摩尔",
+                "sex":0,
+                "avatar":"www.baidu.com/sasjkfgiua/sfsdf"
+            }
+}
+</code></pre>
+
+<pre><code>失败
+{
+    "code": "520",
+    "msg": "验证码不匹配",
+    "data": {
+            }
+}
+</code></pre>
+</body>
+</html>
