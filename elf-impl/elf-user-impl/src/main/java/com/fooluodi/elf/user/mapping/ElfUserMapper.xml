@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fooluodi.elf.user.mapping.ElfUserMapper" >
+  <resultMap id="BaseResultMap" type="com.fooluodi.elf.user.model.ElfUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="mobile_check" property="mobileCheck" jdbcType="TINYINT" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="avatar_check" property="avatarCheck" jdbcType="TINYINT" />
+    <result column="birth_day" property="birthDay" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="inviter_id" property="inviterId" jdbcType="INTEGER" />
+    <result column="signed_at" property="signedAt" jdbcType="TIMESTAMP" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mobile, mobile_check, gender, avatar, avatar_check, birth_day, email, account, 
+    password, salt, signature, inviter_id, signed_at, created_at, updated_at
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from elf_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from elf_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fooluodi.elf.user.model.ElfUser" >
+    insert into elf_user (id, mobile, mobile_check, 
+      gender, avatar, avatar_check, 
+      birth_day, email, account, 
+      password, salt, signature, 
+      inviter_id, signed_at, created_at, 
+      updated_at)
+    values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{mobileCheck,jdbcType=TINYINT}, 
+      #{gender,jdbcType=TINYINT}, #{avatar,jdbcType=VARCHAR}, #{avatarCheck,jdbcType=TINYINT}, 
+      #{birthDay,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
+      #{inviterId,jdbcType=INTEGER}, #{signedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fooluodi.elf.user.model.ElfUser" >
+    insert into elf_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="mobileCheck != null" >
+        mobile_check,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="avatarCheck != null" >
+        avatar_check,
+      </if>
+      <if test="birthDay != null" >
+        birth_day,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="inviterId != null" >
+        inviter_id,
+      </if>
+      <if test="signedAt != null" >
+        signed_at,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileCheck != null" >
+        #{mobileCheck,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarCheck != null" >
+        #{avatarCheck,jdbcType=TINYINT},
+      </if>
+      <if test="birthDay != null" >
+        #{birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="inviterId != null" >
+        #{inviterId,jdbcType=INTEGER},
+      </if>
+      <if test="signedAt != null" >
+        #{signedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fooluodi.elf.user.model.ElfUser" >
+    update elf_user
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileCheck != null" >
+        mobile_check = #{mobileCheck,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarCheck != null" >
+        avatar_check = #{avatarCheck,jdbcType=TINYINT},
+      </if>
+      <if test="birthDay != null" >
+        birth_day = #{birthDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="inviterId != null" >
+        inviter_id = #{inviterId,jdbcType=INTEGER},
+      </if>
+      <if test="signedAt != null" >
+        signed_at = #{signedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fooluodi.elf.user.model.ElfUser" >
+    update elf_user
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      mobile_check = #{mobileCheck,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      avatar_check = #{avatarCheck,jdbcType=TINYINT},
+      birth_day = #{birthDay,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      inviter_id = #{inviterId,jdbcType=INTEGER},
+      signed_at = #{signedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -158,18 +158,19 @@ sup {
 <body>
 <h2>Elf V0.1.0API文档</h2>
 
-<h3>1.验证并登陆</h3>
+<h3>1.短信验证并登陆</h3>
 
 <h4>描述</h4>
 
 <pre><code>用户在app端调用前端sdk发送短信验证码,
 然后由后端验证验证码时使用此接口
+此接口登录会被标记用户为短信认证登录
 </code></pre>
 
 <h4>URL</h4>
 
 <pre><code>GET
-${elf.url}/login?target_phone=13011112222&amp;code=1234
+${elf.url}/login?target_phone=13011112222&amp;code=1234&amp;user_agent=Mozilla/5.0&amp;user_os=9.0.1&amp;user_mac=44-45-53-54-00-00
 </code></pre>
 
 <h5>输入参数</h5>
@@ -199,6 +200,27 @@ ${elf.url}/login?target_phone=13011112222&amp;code=1234
 <td>url</td>
 <td>String</td>
 </tr>
+<tr>
+<td>user_agent</td>
+<td>用户设备的userAgent</td>
+<td>否</td>
+<td>url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>user_os</td>
+<td>用户的os信息</td>
+<td>否</td>
+<td>url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>user_mac</td>
+<td>用户的mac地址</td>
+<td>否</td>
+<td>url</td>
+<td>String</td>
+</tr>
 </tbody>
 </table>
 
@@ -219,6 +241,67 @@ ${elf.url}/login?target_phone=13011112222&amp;code=1234
 {
     "code": "501",
         "msg": "验证码不正确.",
+        "data": {
+        }
+}
+</code></pre>
+
+<h3>2.获取用户详细信息接口</h3>
+
+<h4>描述</h4>
+
+<pre><code>任何时候需要展示用户信息 可以调用此接口
+注意token放在请求header里面
+除登录接口外, 所有请求务必加入token
+</code></pre>
+
+<h4>URL</h4>
+
+<pre><code>GET
+${elf.url}/current_user
+</code></pre>
+
+<h5>输入参数</h5>
+
+<table>
+<thead>
+<tr>
+<th> 名称         </th>
+<th>      说明    </th>
+<th> 必填  </th>
+<th>传参位置</th>
+<th>          参数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCESS_TOKEN</td>
+<td>用户token</td>
+<td>是</td>
+<td>header</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5>返回参数</h5>
+
+<pre><code>成功
+{
+    "code": "200",
+        "msg": "success",
+        "data": {
+            "avatar":"www.baidu.com/sdfasdfererer",
+            "gender":0
+        }
+}
+</code></pre>
+
+<pre><code>失败
+{
+    "code": "601",
+        "msg": "身份验证已经过期,请重新登录.",
         "data": {
         }
 }
