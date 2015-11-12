@@ -15,13 +15,19 @@
     <result column="salt" property="salt" jdbcType="VARCHAR" />
     <result column="signature" property="signature" jdbcType="VARCHAR" />
     <result column="inviter_id" property="inviterId" jdbcType="INTEGER" />
+    <result column="height" property="height" jdbcType="DECIMAL" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="DECIMAL" />
+    <result column="hometown_city_id" property="hometownCityId" jdbcType="INTEGER" />
+    <result column="living_city_id" property="livingCityId" jdbcType="INTEGER" />
     <result column="signed_at" property="signedAt" jdbcType="TIMESTAMP" />
     <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
     <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, mobile, mobile_check, gender, avatar, avatar_check, birth_day, email, account, 
-    password, salt, signature, inviter_id, signed_at, created_at, updated_at
+    password, salt, signature, inviter_id, height, job, salary, hometown_city_id, living_city_id, 
+    signed_at, created_at, updated_at
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -38,14 +44,18 @@
       gender, avatar, avatar_check, 
       birth_day, email, account, 
       password, salt, signature, 
-      inviter_id, signed_at, created_at, 
-      updated_at)
+      inviter_id, height, job, 
+      salary, hometown_city_id, living_city_id, 
+      signed_at, created_at, updated_at
+      )
     values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{mobileCheck,jdbcType=TINYINT}, 
       #{gender,jdbcType=TINYINT}, #{avatar,jdbcType=VARCHAR}, #{avatarCheck,jdbcType=TINYINT}, 
       #{birthDay,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
-      #{inviterId,jdbcType=INTEGER}, #{signedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{updatedAt,jdbcType=TIMESTAMP})
+      #{inviterId,jdbcType=INTEGER}, #{height,jdbcType=DECIMAL}, #{job,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=DECIMAL}, #{hometownCityId,jdbcType=INTEGER}, #{livingCityId,jdbcType=INTEGER}, 
+      #{signedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fooluodi.elf.user.model.ElfUser" >
     insert into elf_user
@@ -88,6 +98,21 @@
       </if>
       <if test="inviterId != null" >
         inviter_id,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="hometownCityId != null" >
+        hometown_city_id,
+      </if>
+      <if test="livingCityId != null" >
+        living_city_id,
       </if>
       <if test="signedAt != null" >
         signed_at,
@@ -139,6 +164,21 @@
       <if test="inviterId != null" >
         #{inviterId,jdbcType=INTEGER},
       </if>
+      <if test="height != null" >
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="hometownCityId != null" >
+        #{hometownCityId,jdbcType=INTEGER},
+      </if>
+      <if test="livingCityId != null" >
+        #{livingCityId,jdbcType=INTEGER},
+      </if>
       <if test="signedAt != null" >
         #{signedAt,jdbcType=TIMESTAMP},
       </if>
@@ -189,6 +229,21 @@
       <if test="inviterId != null" >
         inviter_id = #{inviterId,jdbcType=INTEGER},
       </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="hometownCityId != null" >
+        hometown_city_id = #{hometownCityId,jdbcType=INTEGER},
+      </if>
+      <if test="livingCityId != null" >
+        living_city_id = #{livingCityId,jdbcType=INTEGER},
+      </if>
       <if test="signedAt != null" >
         signed_at = #{signedAt,jdbcType=TIMESTAMP},
       </if>
@@ -215,6 +270,11 @@
       salt = #{salt,jdbcType=VARCHAR},
       signature = #{signature,jdbcType=VARCHAR},
       inviter_id = #{inviterId,jdbcType=INTEGER},
+      height = #{height,jdbcType=DECIMAL},
+      job = #{job,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=DECIMAL},
+      hometown_city_id = #{hometownCityId,jdbcType=INTEGER},
+      living_city_id = #{livingCityId,jdbcType=INTEGER},
       signed_at = #{signedAt,jdbcType=TIMESTAMP},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}

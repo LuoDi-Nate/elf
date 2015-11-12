@@ -1,5 +1,6 @@
 package com.fooluodi.elf.user.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ElfUser {
@@ -28,6 +29,16 @@ public class ElfUser {
     private String signature;
 
     private Integer inviterId;
+
+    private BigDecimal height;
+
+    private String job;
+
+    private Integer salary;
+
+    private Integer hometownCityId;
+
+    private Integer livingCityId;
 
     private Date signedAt;
 
@@ -137,6 +148,46 @@ public class ElfUser {
 
     public void setInviterId(Integer inviterId) {
         this.inviterId = inviterId;
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job == null ? null : job.trim();
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public Integer getHometownCityId() {
+        return hometownCityId;
+    }
+
+    public void setHometownCityId(Integer hometownCityId) {
+        this.hometownCityId = hometownCityId;
+    }
+
+    public Integer getLivingCityId() {
+        return livingCityId;
+    }
+
+    public void setLivingCityId(Integer livingCityId) {
+        this.livingCityId = livingCityId;
     }
 
     public Date getSignedAt() {
