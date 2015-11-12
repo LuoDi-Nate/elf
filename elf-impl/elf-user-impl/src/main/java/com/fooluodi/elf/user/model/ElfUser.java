@@ -1,33 +1,47 @@
 package com.fooluodi.elf.user.model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * @author di
+ * elf主要User类
+ * 注册时不要求将其中所有字段补充完整
+ * */
+//TODO 将此类分拆成几个类, db中也分表存储, 不然热点数据读写过于频繁
 public class ElfUser {
     private Integer id;
 
     private String mobile;
 
-    private Byte mobileCheck;
+    //手机号是否通过验证
+    private Integer mobileCheck;
 
-    private Byte gender;
+    private Integer gender;
 
     private String avatar;
 
-    private Byte avatarCheck;
+    //头像是否通过审核
+    private Integer avatarCheck;
 
-    private Date birthDay;
+    private Timestamp birthDay;
 
     private String email;
 
+    //账号,做唯一校验
     private String account;
 
+    //密码加盐后的md5值 目前默认使用手机号+salt 然后一并md5
     private String password;
 
+    //盐, 目前默认使用字符串 "elf"
     private String salt;
 
+    //用户一句话签名
     private String signature;
 
+    //邀请者id
     private Integer inviterId;
 
     private BigDecimal height;
@@ -40,11 +54,39 @@ public class ElfUser {
 
     private Integer livingCityId;
 
-    private Date signedAt;
+    private Timestamp signedAt;
 
-    private Date createdAt;
+    private Timestamp createdAt;
 
-    private Date updatedAt;
+    private Timestamp updatedAt;
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ElfUser{");
+        sb.append("id=").append(id);
+        sb.append(", mobile='").append(mobile).append('\'');
+        sb.append(", mobileCheck=").append(mobileCheck);
+        sb.append(", gender=").append(gender);
+        sb.append(", avatar='").append(avatar).append('\'');
+        sb.append(", avatarCheck=").append(avatarCheck);
+        sb.append(", birthDay=").append(birthDay);
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", account='").append(account).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", salt='").append(salt).append('\'');
+        sb.append(", signature='").append(signature).append('\'');
+        sb.append(", inviterId=").append(inviterId);
+        sb.append(", height=").append(height);
+        sb.append(", job='").append(job).append('\'');
+        sb.append(", salary=").append(salary);
+        sb.append(", hometownCityId=").append(hometownCityId);
+        sb.append(", livingCityId=").append(livingCityId);
+        sb.append(", signedAt=").append(signedAt);
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", updatedAt=").append(updatedAt);
+        sb.append('}');
+        return sb.toString();
+    }
 
     public Integer getId() {
         return id;
@@ -62,19 +104,19 @@ public class ElfUser {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public Byte getMobileCheck() {
+    public Integer getMobileCheck() {
         return mobileCheck;
     }
 
-    public void setMobileCheck(Byte mobileCheck) {
+    public void setMobileCheck(Integer mobileCheck) {
         this.mobileCheck = mobileCheck;
     }
 
-    public Byte getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(Byte gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
@@ -86,11 +128,11 @@ public class ElfUser {
         this.avatar = avatar == null ? null : avatar.trim();
     }
 
-    public Byte getAvatarCheck() {
+    public Integer getAvatarCheck() {
         return avatarCheck;
     }
 
-    public void setAvatarCheck(Byte avatarCheck) {
+    public void setAvatarCheck(Integer avatarCheck) {
         this.avatarCheck = avatarCheck;
     }
 
@@ -98,7 +140,7 @@ public class ElfUser {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(Timestamp birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -194,7 +236,7 @@ public class ElfUser {
         return signedAt;
     }
 
-    public void setSignedAt(Date signedAt) {
+    public void setSignedAt(Timestamp signedAt) {
         this.signedAt = signedAt;
     }
 
@@ -202,7 +244,7 @@ public class ElfUser {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -210,7 +252,7 @@ public class ElfUser {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 }
