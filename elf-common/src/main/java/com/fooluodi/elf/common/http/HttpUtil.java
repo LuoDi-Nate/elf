@@ -1,4 +1,4 @@
-package com.fooluodi.elf.common.http.http;
+package com.fooluodi.elf.common.http;
 
 
 import org.springframework.stereotype.Component;

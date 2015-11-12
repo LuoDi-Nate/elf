@@ -1,9 +1,9 @@
 package com.fooluodi.elf.common.exception;
 
 public enum BaseExceptions implements IExceptionCode {
-	@Desc("未知异常")
+	@Desc(value = "未知异常", code = "50000")
 	UNKNOWN_EXCEPTION,
 
-	@Desc("用户认证错误:用户登录失败")
+	@Desc(value = "用户认证错误:用户登录失败", code = "51001")
 	SESSION_VALIDATE_EXCEPTION
 }
