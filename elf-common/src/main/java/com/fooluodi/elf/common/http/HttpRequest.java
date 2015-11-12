@@ -1,4 +1,4 @@
-package com.fooluodi.elf.common.http.http;
+package com.fooluodi.elf.common.http;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;

@@ -9,4 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Desc {
 	public String value() default "";
+	public String code()  default "50000";
 }
