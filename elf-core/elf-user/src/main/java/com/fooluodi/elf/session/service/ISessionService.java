@@ -25,5 +25,6 @@ public interface ISessionService {
      * @param token
      *
      * */
+//    TODO 修改void为UserDto
     public void getUserByToken(String token);
 }
