@@ -43,6 +43,8 @@
 
     <modules>
         <module>elf-user-impl</module>
+        <module>elf-sms-impl</module>
+
         <module>../elf-dist/elf-clients</module>
         <module>../elf-dist/elf-servers</module>
         <module>../elf-dist/elf-webapi</module>
