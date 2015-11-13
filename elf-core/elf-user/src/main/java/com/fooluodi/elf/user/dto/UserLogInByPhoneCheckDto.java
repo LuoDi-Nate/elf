@@ -3,6 +3,8 @@ package com.fooluodi.elf.user.dto;
 /**
  * Created by di on 13/11/15.
  * 用户使用短信登录的dto
+ *
+ * 与前端交互, 变量名下划线化
  */
 public class UserLogInByPhoneCheckDto {
     private String target_phone;
