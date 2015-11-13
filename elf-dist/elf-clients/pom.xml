@@ -7,7 +7,7 @@
         <groupId>com.fooluodi</groupId>
         <artifactId>elf-impl</artifactId>
         <version>0.1.0-SNAPSHOT</version>
-        <relativePath>../elf-impl/pom.xml</relativePath>
+        <relativePath>../../elf-impl/pom.xml</relativePath>
     </parent>
     <artifactId>elf-clients</artifactId>
     <name>elf-clients</name>
