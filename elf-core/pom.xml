@@ -25,6 +25,7 @@
         <module>../elf-common</module>
 
         <module>elf-user</module>
+        <module>elf-sms</module>
 
         <module>../elf-impl</module>
     </modules>
