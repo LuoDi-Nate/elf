@@ -1,5 +1,6 @@
 package com.fooluodi.elf.user.service;
 
+import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.user.dto.UserLogInByPhoneCheckDto;
 
 /**
@@ -15,5 +16,5 @@ public interface ILogInService {
      *
      * @return String sessionCode  --> ACCESS_TOKEN
      * */
-    public String loginUserByPhoneCheck(UserLogInByPhoneCheckDto userLogInByPhoneCheckDto);
+    public String loginUserByPhoneCheck(UserLogInByPhoneCheckDto userLogInByPhoneCheckDto) throws ElfServiceException;
 }

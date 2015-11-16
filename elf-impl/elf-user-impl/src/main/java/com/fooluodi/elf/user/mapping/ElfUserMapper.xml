@@ -280,4 +280,11 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getUserByPhoneNum" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from elf_user
+    where mobile = #{phoneNum}
+  </select>
 </mapper>

@@ -14,4 +14,7 @@ public enum ElfSessionExceptionCode implements IExceptionCode {
 
 	@Desc(value = "注册失败", code = "50202")
 	ERROR_REGISTER_FAILED,
+
+	@Desc(value = "该手机号不存在", code = "50203")
+	ERROR_PHONE_DOES_NOT_EXIST,
 }

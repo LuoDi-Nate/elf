@@ -19,6 +19,5 @@ public interface ElfUserMapper {
     /**
      * 通过手机号查找用户
      * */
-    //TODO 补全xml
     ElfUser getUserByPhoneNum(@Param("phoneNUm") String phoneNum);
 }

@@ -3,11 +3,13 @@ package com.fooluodi.elf.user.service.impl;
 import com.fooluodi.elf.common.constant.ElfConstant;
 import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.session.exception.ElfSessionExceptionCode;
+import com.fooluodi.elf.user.dto.ElfUserDto;
 import com.fooluodi.elf.user.mapping.ElfUserMapper;
 import com.fooluodi.elf.user.model.ElfUser;
 import com.fooluodi.elf.user.service.IUserAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
@@ -74,5 +76,24 @@ public class UserAccountServiceImpl implements IUserAccountService {
             logger.error("create user error!", e);
             throw new ElfServiceException(ElfSessionExceptionCode.ERROR_REGISTER_FAILED);
         }
+    }
+
+    @Override
+    public ElfUserDto getUesrByPhone(String phoneNum) throws ElfServiceException {
+        logger.info("get user by phone :", phoneNum);
+
+        ElfUserDto returnUser = new ElfUserDto();
+
+        try {
+            ElfUser userByPhoneNum = userMapper.getUserByPhoneNum(phoneNum);
+
+            BeanUtils.copyProperties(userByPhoneNum, returnUser);
+
+        }catch (Exception e){
+            logger.error("get user by phone error!", e);
+            throw new ElfServiceException(ElfSessionExceptionCode.ERROR_PHONE_DOES_NOT_EXIST);
+        }
+
+        return returnUser;
     }
 }

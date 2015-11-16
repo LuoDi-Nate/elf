@@ -1,6 +1,7 @@
 package com.fooluodi.elf.user.service;
 
 import com.fooluodi.elf.common.exception.ElfServiceException;
+import com.fooluodi.elf.user.dto.ElfUserDto;
 
 /**
  * Created by di on 15/11/15.
@@ -21,4 +22,14 @@ public interface IUserAccountService {
      * @param phoneNum
      * */
     public void createUserByPhone(String phoneNum) throws ElfServiceException;
+
+    /**
+     * 通过一个手机号得到用户账户信息
+     * @param phoneNum
+     *
+     * 如果传入手机号不存在, 抛出serviceException
+     *
+     * @return ElfUserDto
+     * */
+    public ElfUserDto getUesrByPhone(String phoneNum) throws ElfServiceException;
 }
