@@ -26,6 +26,4 @@ public class PingController {
         logger.info("ping");
         return ResponseEntity.success("hi!");
     }
-
-
 }
