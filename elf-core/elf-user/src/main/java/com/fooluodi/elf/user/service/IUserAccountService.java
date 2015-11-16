@@ -1,5 +1,7 @@
 package com.fooluodi.elf.user.service;
 
+import com.fooluodi.elf.common.exception.ElfServiceException;
+
 /**
  * Created by di on 15/11/15.
  * 用户账户service
@@ -18,5 +20,5 @@ public interface IUserAccountService {
      * 根据手机号注册新的用户
      * @param phoneNum
      * */
-    public void createUserByPhone(String phoneNum);
+    public void createUserByPhone(String phoneNum) throws ElfServiceException;
 }
