@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * @author di
  * elf主要User类
- * 同Do, 不过为了暴露出来 专门包装了dto类
+ * 除了无密码字段外同Do
  * */
 public class ElfUserDto {
     private Integer id;
@@ -30,12 +30,6 @@ public class ElfUserDto {
 
     //账号,做唯一校验
     private String account;
-
-    //密码加盐后的md5值 目前默认使用手机号+salt 然后一并md5
-    private String password;
-
-    //盐, 目前默认使用字符串 "elf"
-    private String salt;
 
     //用户一句话签名
     private String signature;
@@ -71,8 +65,6 @@ public class ElfUserDto {
         sb.append(", birthDay=").append(birthDay);
         sb.append(", email='").append(email).append('\'');
         sb.append(", account='").append(account).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", salt='").append(salt).append('\'');
         sb.append(", signature='").append(signature).append('\'');
         sb.append(", inviterId=").append(inviterId);
         sb.append(", height=").append(height);
@@ -157,22 +149,6 @@ public class ElfUserDto {
 
     public void setAccount(String account) {
         this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getSignature() {

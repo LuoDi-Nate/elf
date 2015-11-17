@@ -38,4 +38,13 @@ public interface IUserAccountService {
      * @param userId
      * */
     public ElfUserDto getUserByUserId(int userId) throws ElfServiceException;
+
+    /**
+     * 更新个人资料的服务
+     *
+     * @param userDto
+     *
+     * @return 修改后的ElfUserDto
+     * */
+    public ElfUserDto updateUserProfile(ElfUserDto userDto);
 }

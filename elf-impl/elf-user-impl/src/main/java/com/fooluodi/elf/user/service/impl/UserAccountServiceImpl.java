@@ -115,4 +115,18 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
         return returnUser;
     }
+
+    @Override
+    public ElfUserDto updateUserProfile(ElfUserDto userDto) {
+        logger.info("ready to update user profile for id:{}", userDto.getId());
+
+        ElfUser elfUser = new ElfUser();
+        BeanUtils.copyProperties(userDto, elfUser);
+
+        userMapper.updateByPrimaryKeySelective(elfUser);
+
+        BeanUtils.copyProperties(elfUser, userDto);
+
+        return userDto;
+    }
 }
