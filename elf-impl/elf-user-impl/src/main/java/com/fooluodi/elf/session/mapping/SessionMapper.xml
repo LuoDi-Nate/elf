@@ -150,4 +150,11 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getSessionByToken" resultMap="BaseResultMap">
+    select
+     <include refid="Base_Column_List" />
+     from elf_session
+     where token = #{token}
+  </select>
 </mapper>

@@ -26,10 +26,16 @@ public interface IUserAccountService {
     /**
      * 通过一个手机号得到用户账户信息
      * @param phoneNum
-     *
      * 如果传入手机号不存在, 抛出serviceException
      *
      * @return ElfUserDto
      * */
     public ElfUserDto getUesrByPhone(String phoneNum) throws ElfServiceException;
+
+    /**
+     * 根据userId获取user
+     *
+     * @param userId
+     * */
+    public ElfUserDto getUserByUserId(int userId) throws ElfServiceException;
 }

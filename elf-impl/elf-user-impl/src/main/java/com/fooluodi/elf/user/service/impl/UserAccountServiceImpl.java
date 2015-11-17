@@ -96,4 +96,23 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
         return returnUser;
     }
+
+    @Override
+    public ElfUserDto getUserByUserId(int userId) throws ElfServiceException {
+        logger.info("get user by userId:{}", userId);
+
+        ElfUserDto returnUser = new ElfUserDto();
+
+        try {
+            ElfUser userByPhoneNum = userMapper.selectByPrimaryKey(userId);
+
+            BeanUtils.copyProperties(userByPhoneNum, returnUser);
+
+        }catch (Exception e){
+            logger.error("get user by userId error!", e);
+            throw new ElfServiceException(ElfSessionExceptionCode.ERROR_GET_USER_BY_USERID);
+        }
+
+        return returnUser;
+    }
 }

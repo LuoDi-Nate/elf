@@ -1,6 +1,8 @@
 package com.fooluodi.elf.session.service;
 
+import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.session.dto.SessionLogger;
+import com.fooluodi.elf.user.dto.ElfUserDto;
 
 /**
  * Created by di on 13/11/15.
@@ -21,10 +23,12 @@ public interface ISessionService {
 
     /**
      * 根据token(ACCESS_TOKEN)信息获取User对象
+     * 会尝试从redis中通过token来查找userId,
+     * redis的热数据是可降级的, 如果从redis中没有找到, 会去db中查找, 如果仍没有, 会抛出serviceException
      *
      * @param token
      *
+     * @return 该token对应的User
      * */
-//    TODO 修改void为UserDto
-    public void getUserByToken(String token);
+    public ElfUserDto getUserByToken(String token) throws ElfServiceException;
 }

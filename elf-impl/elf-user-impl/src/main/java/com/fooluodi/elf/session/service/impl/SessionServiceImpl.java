@@ -1,13 +1,19 @@
 package com.fooluodi.elf.session.service.impl;
 
+import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.common.util.time.DateUtil;
 import com.fooluodi.elf.session.dto.SessionLogger;
+import com.fooluodi.elf.session.exception.ElfSessionExceptionCode;
+import com.fooluodi.elf.session.exception.ElfSessionServiceException;
 import com.fooluodi.elf.session.mapping.SessionMapper;
 import com.fooluodi.elf.session.model.Session;
 import com.fooluodi.elf.session.service.ISessionService;
+import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.service.IUserAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
@@ -25,6 +31,9 @@ public class SessionServiceImpl implements ISessionService {
 
     @Resource
     private SessionMapper sessionMapper;
+
+    @Resource
+    private IUserAccountService userAccountService;
 
     @Override
     public String addSessionForSomeone(SessionLogger sessionLogger) {
@@ -62,7 +71,22 @@ public class SessionServiceImpl implements ISessionService {
     }
 
     @Override
-    public void getUserByToken(String token) {
+    public ElfUserDto getUserByToken(String token) throws ElfServiceException {
+        //TODO 从redis重获取
 
+        //如果从redis重未查到用户, 降级去db中查找
+        Session sessionByToken = null;
+        try {
+            sessionByToken = sessionMapper.getSessionByToken(token);
+
+            Assert.notNull(sessionByToken, "get session failed!");
+        }catch (Exception e){
+            logger.error("get session by token:{} error.", e);
+            throw new ElfSessionServiceException(ElfSessionExceptionCode.ERROR_GET_USER_BY_TOKEN);
+        }
+
+        ElfUserDto userByUserId = userAccountService.getUserByUserId(sessionByToken.getUserId());
+
+        return userByUserId;
     }
 }

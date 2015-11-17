@@ -9,7 +9,7 @@ public class WebAPISecurityProtocol {
 
 	public static final String PING = "/ping";
 
-	public static final String HTTP_ACCESS_TOKEN = "HTTP_ACCESS_TOKEN";
+	public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
 
 	public static final String HTTP_TIMESTAMP = "HTTP_TIMESTAMP";
 
@@ -19,7 +19,7 @@ public class WebAPISecurityProtocol {
 
 	public static final String HTTP_CONSUMER_KEY = "HTTP_CONSUMER_KEY";
 
-	public static final String CUSTOM_HEADERS = "Content-Type,X-Requested-With,Accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers, HTTP_CONSUMER_KEY, HTTP_DEVICE_ID, HTTP_SIGNATURE, HTTP_ACCESS_TOKEN, HTTP_TIMESTAMP";
+	public static final String CUSTOM_HEADERS = "Content-Type,X-Requested-With,Accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers, HTTP_CONSUMER_KEY, HTTP_DEVICE_ID, HTTP_SIGNATURE, ACCESS_TOKEN, HTTP_TIMESTAMP";
 	
 	/**
 	 * 如有必要，可以对request进行验证
@@ -31,7 +31,7 @@ public class WebAPISecurityProtocol {
 
 		String timestamp = request.getHeader(HTTP_TIMESTAMP);
 
-		String access_token = request.getHeader(HTTP_ACCESS_TOKEN);
+		String access_token = request.getHeader(ACCESS_TOKEN);
 
 		String device_id = request.getHeader(HTTP_DEVICE_ID);
 

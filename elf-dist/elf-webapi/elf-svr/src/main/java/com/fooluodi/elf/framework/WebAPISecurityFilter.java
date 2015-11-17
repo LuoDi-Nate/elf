@@ -4,17 +4,24 @@ import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.common.util.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 /**
- * Created by di on 21/8/15.
+ * Created by di on 2015年11月17日16:02:37
+ *
+ * 拦截所有的http请求,
  * 放过白名单外的请求
+ * 对剩下的请求做安全校验, 提取ACCESS-TOKEN, 包装出来ElfUser后添加到httpRequest中
+ * 在controller中如果需要ElfUser, 直接在方法体中声明ElfUser, springMvcResolver会自动为其装配Bean
  */
+
 
 public class WebAPISecurityFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(WebAPIBaseController.class);
@@ -79,27 +86,17 @@ public class WebAPISecurityFilter implements Filter {
     }
 
     private ResponseEntity<?> securityCheck(HttpServletRequest request, HttpServletResponse response) {
-//        //token存放在request的hearder里
-////		String access_token = request.getHeader(WebAPISecurityProtocol.HTTP_ACCESS_TOKEN);
-//        String access_token = "f4a9fd0b-7aaf-44c1-8982-18338bcefcfe";
-//        logger.debug("准备检查token");
-//        //get cookie
-//        Cookie cookie = WebUtils.getCookie(request, WebAPISecurityProtocol.COFFEE_TOKEN);
-//        logger.debug("查看cook" + cookie);
-////        没拿到抛错
-//        if (cookie == null) {
-//            logger.error("access_token is null , or access_token is empty ");
-//            return new ResponseEntity("20001", "没有检测到登陆", null);
-//        }
-//        access_token = cookie.getValue();
-//
-//        if (access_token == null || access_token.trim().equals("")) {
-//            logger.error("access_token is null , or access_token is empty ");
-//            return new ResponseEntity("20001", "没有检测到登陆", null);
-//        }
-//
-//        // 1,通过token，查询coffee-hr系统，验证token的有效性
-//        // 获得CoffeeUser对象
+        //token存放在request的hearder里
+		String access_token = request.getHeader(WebAPISecurityProtocol.ACCESS_TOKEN);
+        logger.info("get a request ACCESS-TOKEN:{}", access_token);
+
+        if (access_token == null || access_token.trim().equals("")) {
+            logger.error("access_token is null , or access_token is empty ");
+            return new ResponseEntity("300001", "没有检测到登陆", null);
+        }
+
+        // 1,通过token，查询coffee-hr系统，验证token的有效性
+        // 获得CoffeeUser对象
 //        MinosUser minosUser = new MinosUser();
 //        try {
 //        	MinosUserService minosUserService = ClientUtil.getContext().getClient(MinosUserService.class);

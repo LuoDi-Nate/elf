@@ -17,4 +17,10 @@ public enum ElfSessionExceptionCode implements IExceptionCode {
 
 	@Desc(value = "该手机号不存在", code = "50203")
 	ERROR_PHONE_DOES_NOT_EXIST,
+
+	@Desc(value = "会话过期", code = "50204")
+	ERROR_GET_USER_BY_TOKEN,
+
+	@Desc(value = "用户不存在", code = "50205")
+	ERROR_GET_USER_BY_USERID,
 }
