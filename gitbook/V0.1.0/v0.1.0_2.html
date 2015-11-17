@@ -182,7 +182,7 @@ ${elf.url}/login?target_phone=13011112222&amp;code=1234&amp;user_agent=Mozilla/5
 <th>      说明    </th>
 <th> 必填  </th>
 <th>传参位置</th>
-<th>          参数类型</th>
+<th>          参数类型   </th>
 </tr>
 </thead>
 <tbody>
@@ -270,7 +270,7 @@ ${elf.url}/current_user
 <th>      说明    </th>
 <th> 必填  </th>
 <th>传参位置</th>
-<th>          参数类型</th>
+<th>          参数类型  </th>
 </tr>
 </thead>
 <tbody>
@@ -294,6 +294,161 @@ ${elf.url}/current_user
         "data": {
             "avatar":"www.baidu.com/sdfasdfererer",
             "gender":0
+        }
+}
+</code></pre>
+
+<pre><code>失败
+{
+    "code": "601",
+        "msg": "身份验证已经过期,请重新登录.",
+        "data": {
+        }
+}
+</code></pre>
+
+<h3>3.提交用户注册信息接口</h3>
+
+<h4>描述</h4>
+
+<pre><code>用户注册后, 进入录入信息时使用的接口.
+</code></pre>
+
+<h4>URL</h4>
+
+<pre><code>POST
+${elf.url}/user/info
+</code></pre>
+
+<h5>输入参数</h5>
+
+<table>
+<thead>
+<tr>
+<th> 名称         </th>
+<th>      说明    </th>
+<th> 必填  </th>
+<th>传参位置</th>
+<th>          参数类型  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCESS_TOKEN</td>
+<td>用户token</td>
+<td>是</td>
+<td>header</td>
+<td>String</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>用户性别</td>
+<td>是</td>
+<td>body</td>
+<td>int 0女, 1男</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>用户头像地址</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>birth_day</td>
+<td>用户生日</td>
+<td>是</td>
+<td>body</td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>email</td>
+<td>用户邮箱</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>account</td>
+<td>用户注册账号</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>password</td>
+<td>用户密码加盐后md5</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>salt</td>
+<td>盐</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>用户一句话签名</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>inviter_id</td>
+<td>推荐人id</td>
+<td>否</td>
+<td>body</td>
+<td>int</td>
+</tr>
+<tr>
+<td>height</td>
+<td>用户身高</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>job</td>
+<td>用户职位信息</td>
+<td>否</td>
+<td>body</td>
+<td>String</td>
+</tr>
+<tr>
+<td>salary</td>
+<td>用户薪水信息</td>
+<td>否</td>
+<td>body</td>
+<td>double</td>
+</tr>
+<tr>
+<td>hometown_city_id</td>
+<td>用户家乡城市id</td>
+<td>否</td>
+<td>body</td>
+<td>int</td>
+</tr>
+<tr>
+<td>living_city_id</td>
+<td>用户现居地城市id</td>
+<td>否</td>
+<td>body</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5>返回参数</h5>
+
+<pre><code>成功
+{
+    "code": "200",
+        "msg": "success",
+        "data": {
         }
 }
 </code></pre>
