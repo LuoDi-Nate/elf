@@ -2,10 +2,14 @@ package com.fooluodi.elf.framework;
 
 import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.common.util.JsonHelper;
+import com.fooluodi.elf.session.service.ISessionService;
+import com.fooluodi.elf.user.dto.ElfUserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
+import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +26,11 @@ import java.io.IOException;
  * 在controller中如果需要ElfUser, 直接在方法体中声明ElfUser, springMvcResolver会自动为其装配Bean
  */
 
-
 public class WebAPISecurityFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(WebAPIBaseController.class);
 
-    private WebAPISecurityProtocol securityProtocol = new WebAPISecurityProtocol();
+    @Resource
+    private ISessionService sessionService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -49,7 +53,7 @@ public class WebAPISecurityFilter implements Filter {
             error = securityCheck(httpRequest, httpResponse);
         } catch (Exception e) {
             logger.error("security check error", e);
-            error = new ResponseEntity<String>("SECURITY_CHECK_ERROR", "安全检查失败", "请重新登录");
+            error =new ResponseEntity("300001", "没有检测到登陆", null);
         }
         if (error != null) {
             httpResponse.setContentType("application/json");
@@ -85,7 +89,7 @@ public class WebAPISecurityFilter implements Filter {
         }
     }
 
-    private ResponseEntity<?> securityCheck(HttpServletRequest request, HttpServletResponse response) {
+    private ResponseEntity<?> securityCheck(HttpServletRequest request, HttpServletResponse response) throws ElfServiceException {
         //token存放在request的hearder里
 		String access_token = request.getHeader(WebAPISecurityProtocol.ACCESS_TOKEN);
         logger.info("get a request ACCESS-TOKEN:{}", access_token);
@@ -95,23 +99,18 @@ public class WebAPISecurityFilter implements Filter {
             return new ResponseEntity("300001", "没有检测到登陆", null);
         }
 
-        // 1,通过token，查询coffee-hr系统，验证token的有效性
-        // 获得CoffeeUser对象
-//        MinosUser minosUser = new MinosUser();
-//        try {
-//        	MinosUserService minosUserService = ClientUtil.getContext().getClient(MinosUserService.class);
-//            minosUser = minosUserService.getMinosUserByToken(access_token);
-//        } catch (MinosServiceException e) {
-//            logger.error("security Check error : " + e.getMessage());
-//            return new ResponseEntity<String>(e.getErrorCode(), e.getMessage(), "");
-//        }
-//        // 将对象存入request中
-//        request.setAttribute(WebAPISecurityProtocol.MINOS_USER, minosUser);
-//
-//        if (!securityProtocol.checkSign(request)) {
-//            MinosSystemException se = new MinosSystemException(WebAPIExceptions.ERR_BAD_REQUEST);
-//            return new ResponseEntity<String>(se.getErrorCode(), se.getErrorMessage(), "");
-//        }
+        // 获得ElfUserDto对象
+        ElfUserDto elfUser = new ElfUserDto();
+
+        try {
+            elfUser = sessionService.getUserByToken(access_token);
+        } catch (ElfServiceException e) {
+            logger.error("security Check error : " + e.getMessage());
+            return new ResponseEntity<String>(e.getErrorCode(), e.getMessage(), "");
+        }
+        // 将对象存入request中
+        request.setAttribute(WebAPISecurityProtocol.ELF_USER, elfUser);
+
         return null;
     }
 

@@ -61,7 +61,7 @@ public class ElfUserDto {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ElfUser{");
+        final StringBuffer sb = new StringBuffer("ElfUserDto{");
         sb.append("id=").append(id);
         sb.append(", mobile='").append(mobile).append('\'');
         sb.append(", mobileCheck=").append(mobileCheck);
@@ -100,7 +100,7 @@ public class ElfUserDto {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+        this.mobile = mobile;
     }
 
     public Integer getMobileCheck() {
@@ -124,7 +124,7 @@ public class ElfUserDto {
     }
 
     public void setAvatar(String avatar) {
-        this.avatar = avatar == null ? null : avatar.trim();
+        this.avatar = avatar;
     }
 
     public Integer getAvatarCheck() {
@@ -135,7 +135,7 @@ public class ElfUserDto {
         this.avatarCheck = avatarCheck;
     }
 
-    public Date getBirthDay() {
+    public Timestamp getBirthDay() {
         return birthDay;
     }
 
@@ -148,7 +148,7 @@ public class ElfUserDto {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getAccount() {
@@ -156,7 +156,7 @@ public class ElfUserDto {
     }
 
     public void setAccount(String account) {
-        this.account = account == null ? null : account.trim();
+        this.account = account;
     }
 
     public String getPassword() {
@@ -164,7 +164,7 @@ public class ElfUserDto {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getSalt() {
@@ -172,7 +172,7 @@ public class ElfUserDto {
     }
 
     public void setSalt(String salt) {
-        this.salt = salt == null ? null : salt.trim();
+        this.salt = salt;
     }
 
     public String getSignature() {
@@ -180,7 +180,7 @@ public class ElfUserDto {
     }
 
     public void setSignature(String signature) {
-        this.signature = signature == null ? null : signature.trim();
+        this.signature = signature;
     }
 
     public Integer getInviterId() {
@@ -204,7 +204,7 @@ public class ElfUserDto {
     }
 
     public void setJob(String job) {
-        this.job = job == null ? null : job.trim();
+        this.job = job;
     }
 
     public Integer getSalary() {
@@ -231,7 +231,7 @@ public class ElfUserDto {
         this.livingCityId = livingCityId;
     }
 
-    public Date getSignedAt() {
+    public Timestamp getSignedAt() {
         return signedAt;
     }
 
@@ -239,7 +239,7 @@ public class ElfUserDto {
         this.signedAt = signedAt;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
@@ -247,7 +247,7 @@ public class ElfUserDto {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 

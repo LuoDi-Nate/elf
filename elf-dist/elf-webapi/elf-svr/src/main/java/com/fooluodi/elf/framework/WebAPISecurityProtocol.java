@@ -20,6 +20,8 @@ public class WebAPISecurityProtocol {
 	public static final String HTTP_CONSUMER_KEY = "HTTP_CONSUMER_KEY";
 
 	public static final String CUSTOM_HEADERS = "Content-Type,X-Requested-With,Accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers, HTTP_CONSUMER_KEY, HTTP_DEVICE_ID, HTTP_SIGNATURE, ACCESS_TOKEN, HTTP_TIMESTAMP";
+
+	public static final String ELF_USER = "ELF_USER";
 	
 	/**
 	 * 如有必要，可以对request进行验证

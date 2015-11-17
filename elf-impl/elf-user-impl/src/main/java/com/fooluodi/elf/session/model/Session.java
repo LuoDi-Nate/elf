@@ -75,7 +75,7 @@ public class Session {
     }
 
     public void setToken(String token) {
-        this.token = token == null ? null : token.trim();
+        this.token = token;
     }
 
     public Integer getLoginAccount() {
@@ -91,7 +91,7 @@ public class Session {
     }
 
     public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent == null ? null : userAgent.trim();
+        this.userAgent = userAgent;
     }
 
     public String getUserOs() {
@@ -99,7 +99,7 @@ public class Session {
     }
 
     public void setUserOs(String userOs) {
-        this.userOs = userOs == null ? null : userOs.trim();
+        this.userOs = userOs;
     }
 
     public String getUserMac() {
@@ -107,10 +107,10 @@ public class Session {
     }
 
     public void setUserMac(String userMac) {
-        this.userMac = userMac == null ? null : userMac.trim();
+        this.userMac = userMac;
     }
 
-    public Date getExpireTime() {
+    public Timestamp getExpireTime() {
         return expireTime;
     }
 
@@ -118,7 +118,7 @@ public class Session {
         this.expireTime = expireTime;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
@@ -126,7 +126,7 @@ public class Session {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 

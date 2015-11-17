@@ -1,6 +1,8 @@
 package com.fooluodi.elf.webapi;
 
 import com.fooluodi.elf.framework.ResponseEntity;
+import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.model.ElfUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,5 +27,14 @@ public class PingController {
     ResponseEntity<?> ping() {
         logger.info("ping");
         return ResponseEntity.success("hi!");
+    }
+
+    @RequestMapping(value = "/user_test", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    ResponseEntity<?> testGetUserByToken(ElfUserDto user) {
+        logger.info("test get user by token");
+
+        return ResponseEntity.success(user);
     }
 }

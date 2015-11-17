@@ -27,6 +27,7 @@ import java.util.UUID;
 public class SessionServiceImpl implements ISessionService {
     private static final Logger logger = LoggerFactory.getLogger(SessionServiceImpl.class);
 
+    //token过期时间 30天
     private static int SESSION_EXPIRE_DAY = 30;
 
     @Resource

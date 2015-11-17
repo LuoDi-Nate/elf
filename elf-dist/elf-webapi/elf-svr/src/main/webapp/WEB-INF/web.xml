@@ -14,9 +14,6 @@
 			/WEB-INF/spring/root-context.xml
 		</param-value>
 	</context-param>
-    <!--<listener>-->
-        <!--<listener-class>me.ele.anubis.listener.SoaClientListener</listener-class>-->
-    <!--</listener>-->
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
