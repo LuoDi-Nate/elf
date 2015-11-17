@@ -81,6 +81,9 @@ public class SessionServiceImpl implements ISessionService {
             sessionByToken = sessionMapper.getSessionByToken(token);
 
             Assert.notNull(sessionByToken, "get session failed!");
+
+            //查看token是否过期
+            Assert.isTrue(sessionByToken.getExpireTime().getTime() > System.currentTimeMillis(), "token over expire time!");
         }catch (Exception e){
             logger.error("get session by token:{} error.", e);
             throw new ElfSessionServiceException(ElfSessionExceptionCode.ERROR_GET_USER_BY_TOKEN);
