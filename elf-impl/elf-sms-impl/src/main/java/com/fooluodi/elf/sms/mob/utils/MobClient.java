@@ -33,18 +33,22 @@ public class MobClient {
 	private List<String> params = new ArrayList<String>() ;
 	
 	//链接超时时间
-	public int conn_timeout= 10000;
+	public int conn_timeout= 5000;
 	
 	//读取超时
-	public int read_timeout = 10000;
+	public int read_timeout = 5000;
 	
 	//请求方式
 	public String method = REQ_METHOD_POST;
 	
 	
 	private HttpURLConnection conn ;
-	
-	
+
+
+	public void setParams(List<String> params) {
+		this.params = params;
+	}
+
 	public MobClient(String address) throws KeyManagementException, NoSuchAlgorithmException, IOException{
 		this.address = address;
 		this.conn = build();
@@ -202,11 +206,4 @@ public class MobClient {
 		}
 		return this;
 	}
-	
-	
-	
-	
-	
-	
-	
 }
