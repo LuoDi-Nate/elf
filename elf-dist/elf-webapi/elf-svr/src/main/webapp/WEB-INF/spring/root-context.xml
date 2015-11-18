@@ -13,7 +13,7 @@
     </context:component-scan>
 
     <!-- web Filter bean -->
-    <bean id="webapi_security" class="com.fooluodi.elf.framework.WebAPISecurityFilter"/>
+    <bean id="webapi_security" class="com.fooluodi.elf.sms.framework.WebAPISecurityFilter"/>
 
     <bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding">
@@ -36,7 +36,7 @@
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="messageInterpolator">
-            <bean class="com.fooluodi.elf.framework.SpringMessageSourceMessageInterpolator"/>
+            <bean class="com.fooluodi.elf.sms.framework.SpringMessageSourceMessageInterpolator"/>
         </property>
     </bean>
 
