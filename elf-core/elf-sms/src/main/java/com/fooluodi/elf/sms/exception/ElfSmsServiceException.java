@@ -1,6 +1,7 @@
 package com.fooluodi.elf.sms.exception;
 
 
+import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.common.exception.ElfSystemException;
 import com.fooluodi.elf.common.exception.IExceptionCode;
 
@@ -9,7 +10,7 @@ import com.fooluodi.elf.common.exception.IExceptionCode;
  * 
  */
 
-public class ElfSmsServiceException extends ElfSystemException {
+public class ElfSmsServiceException extends ElfServiceException {
 
 	private static final long serialVersionUID = -8598682047988760813L;
 	

@@ -1,5 +1,7 @@
 package com.fooluodi.elf.sms.service;
 
+import com.fooluodi.elf.common.exception.ElfServiceException;
+
 /**
  * Created by di on 18/11/15.
  * 关于短信的服务
@@ -14,5 +16,5 @@ public interface ISmsService {
      *
      * @return 是否合法
      * */
-    public boolean checkLegality(String phoneNum, String code);
+    public boolean checkLegality(String phoneNum, String code) throws ElfServiceException;
 }
