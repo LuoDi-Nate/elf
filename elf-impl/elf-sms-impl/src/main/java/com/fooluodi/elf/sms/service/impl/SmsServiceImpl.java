@@ -67,20 +67,28 @@ public class SmsServiceImpl implements ISmsService {
         switch (mobReturnDto.getStatus()){
             case MobConstant.MOB_HAS_NO_APPKEY:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_HAS_NO_APPKEY);
+
             case MobConstant.MOB_INVALID_APPKEY:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_INVALID_APPKEY);
+
             case MobConstant.MOB_INVALID_PHONE_NUMBER:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_INVALID_PHONE_NUMBER);
+
             case MobConstant.MOB_NO_CODE:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_NO_CODE);
+
             case MobConstant.MOB_NOT_ACCESS_OPTION:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_NOT_ACCESS_OPTION);
+
             case MobConstant.MOB_NO_ZONE:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_NO_ZONE);
+
             case MobConstant.MOB_WRONG_CODE:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_WRONG_CODE);
+
             case MobConstant.MOB_TOO_MANY_TIMES:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.MOB_TOO_MANY_TIMES);
+
             default:
                 return new ElfSmsServiceException(ElfSmsExceptionCode.ERROR_PHOME_CODE_CHECK_FAILED);
         }

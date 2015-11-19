@@ -1,0 +1,2 @@
+mob_appkey={{_ .MOB_APP_KEY}}
+mob_url={{_ .MOB_URL}}

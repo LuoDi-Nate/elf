@@ -27,6 +27,7 @@
             <list>
                 <value>classpath:database.properties</value>
                 <value>classpath:redis.properties</value>
+                <value>classpath:mob.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="UTF-8"/>

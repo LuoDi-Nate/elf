@@ -44,7 +44,4 @@ public class UserController extends WebAPIBaseController {
         return ResponseEntity.success(elfUserDto);
     }
 
-
-
-
 }
