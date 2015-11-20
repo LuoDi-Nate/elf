@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>0.1.0-SNAPSHOT</version>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <elf.version>0.1.0-SNAPSHOT</elf.version>
