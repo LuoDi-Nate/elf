@@ -3,7 +3,6 @@ package com.fooluodi.elf.session.model;
 import com.fooluodi.elf.session.constant.SessionConstant;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author di 2015年11月15日23:27:25

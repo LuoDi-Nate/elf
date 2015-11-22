@@ -1,4 +1,4 @@
-package com.fooluodi.elf.session.exception;
+package com.fooluodi.elf.sms.exception;
 
 
 import com.fooluodi.elf.common.exception.ElfServiceException;
@@ -10,24 +10,24 @@ import com.fooluodi.elf.common.exception.IExceptionCode;
  * 
  */
 
-public class ElfSessionServiceException extends ElfServiceException {
+public class ElfSmsServiceException extends ElfServiceException {
 
 	private static final long serialVersionUID = -8598682047988760813L;
 	
-	public ElfSessionServiceException(IExceptionCode code) {
+	public ElfSmsServiceException(IExceptionCode code) {
 		super(code);
 	}
 
-	public ElfSessionServiceException(IExceptionCode code, String message,
+	public ElfSmsServiceException(IExceptionCode code, String message,
 			Throwable cause) {
 		super(code, message, cause);
 	}
 
-	public ElfSessionServiceException(IExceptionCode code, String message) {
+	public ElfSmsServiceException(IExceptionCode code, String message) {
 		super(code, message);
 	}
 
-	public ElfSessionServiceException(IExceptionCode code, Throwable cause) {
+	public ElfSmsServiceException(IExceptionCode code, Throwable cause) {
 		super(code, cause);
 	}
 

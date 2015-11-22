@@ -120,7 +120,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
     }
 
     @Override
-    public ElfUserUpdateDto updateUserProfile(ElfUserUpdateDto userDto) {
+    public ElfUserUpdateDto updateUserProfile(ElfUserUpdateDto userDto) throws ElfUserServiceException {
         logger.info("ready to update user profile for id:{}", userDto.getId());
 
         ElfUser elfUser = new ElfUser();

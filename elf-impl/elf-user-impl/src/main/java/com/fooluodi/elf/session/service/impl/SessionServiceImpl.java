@@ -63,7 +63,7 @@ public class SessionServiceImpl implements ISessionService {
 
         try {
             sessionMapper.insert(session);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("create session for id:{} error!", sessionLogger.getUserId(), e);
             throw e;
         }
@@ -84,7 +84,7 @@ public class SessionServiceImpl implements ISessionService {
 
             //查看token是否过期
             Assert.isTrue(sessionByToken.getExpireTime().getTime() > System.currentTimeMillis(), "token over expire time!");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("get session by token:{} error.", e);
             throw new ElfSessionServiceException(ElfSessionExceptionCode.ERROR_GET_USER_BY_TOKEN);
         }

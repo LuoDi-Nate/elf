@@ -3,6 +3,7 @@ package com.fooluodi.elf.user.service;
 import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import com.fooluodi.elf.user.dto.ElfUserUpdateDto;
+import com.fooluodi.elf.user.exception.ElfUserServiceException;
 
 /**
  * Created by di on 15/11/15.
@@ -47,5 +48,5 @@ public interface IUserAccountService {
      *
      * @return 修改后的ElfUserDto
      * */
-    public ElfUserUpdateDto updateUserProfile(ElfUserUpdateDto userDto);
+    public ElfUserUpdateDto updateUserProfile(ElfUserUpdateDto userDto) throws ElfUserServiceException;
 }

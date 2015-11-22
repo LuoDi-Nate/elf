@@ -4,6 +4,7 @@ import com.fooluodi.elf.framework.ResponseEntity;
 import com.fooluodi.elf.framework.WebAPIBaseController;
 import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import com.fooluodi.elf.user.dto.ElfUserUpdateDto;
+import com.fooluodi.elf.user.exception.ElfUserServiceException;
 import com.fooluodi.elf.user.service.IUserAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ public class UserController extends WebAPIBaseController {
     @RequestMapping(value = "/user/info", method = RequestMethod.POST)
     public
     @ResponseBody
-    ResponseEntity<ElfUserUpdateDto> updateUserInfo(ElfUserInnerDto userInnerDto,ElfUserUpdateDto userDto) {
+    ResponseEntity<ElfUserUpdateDto> updateUserInfo(ElfUserInnerDto userInnerDto,ElfUserUpdateDto userDto) throws ElfUserServiceException {
         logger.info("get current_user, user:{}", userInnerDto.getId());
 
         userDto.setId(userInnerDto.getId());
@@ -46,6 +47,5 @@ public class UserController extends WebAPIBaseController {
 
         return ResponseEntity.success(elfUserUpdateDto);
     }
-
 
 }

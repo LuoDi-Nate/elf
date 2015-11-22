@@ -25,6 +25,12 @@
             <artifactId>elf-user-impl</artifactId>
             <version>${elf.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fooluodi</groupId>
+            <artifactId>elf-sms-impl</artifactId>
+            <version>${elf.version}</version>
+        </dependency>
         
 		<!-- Quartz -->
 		<dependency>
