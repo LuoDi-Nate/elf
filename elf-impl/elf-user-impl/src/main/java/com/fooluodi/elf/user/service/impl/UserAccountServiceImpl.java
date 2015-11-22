@@ -3,7 +3,10 @@ package com.fooluodi.elf.user.service.impl;
 import com.fooluodi.elf.common.constant.ElfConstant;
 import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.session.exception.ElfSessionExceptionCode;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
+import com.fooluodi.elf.user.dto.ElfUserUpdateDto;
+import com.fooluodi.elf.user.exception.ElfUserExceptionCode;
+import com.fooluodi.elf.user.exception.ElfUserServiceException;
 import com.fooluodi.elf.user.mapping.ElfUserMapper;
 import com.fooluodi.elf.user.model.ElfUser;
 import com.fooluodi.elf.user.service.IUserAccountService;
@@ -79,10 +82,10 @@ public class UserAccountServiceImpl implements IUserAccountService {
     }
 
     @Override
-    public ElfUserDto getUesrByPhone(String phoneNum) throws ElfServiceException {
+    public ElfUserInnerDto getUesrByPhone(String phoneNum) throws ElfServiceException {
         logger.info("get user by phone :", phoneNum);
 
-        ElfUserDto returnUser = new ElfUserDto();
+        ElfUserInnerDto returnUser = new ElfUserInnerDto();
 
         try {
             ElfUser userByPhoneNum = userMapper.getUserByPhoneNum(phoneNum);
@@ -98,10 +101,10 @@ public class UserAccountServiceImpl implements IUserAccountService {
     }
 
     @Override
-    public ElfUserDto getUserByUserId(int userId) throws ElfServiceException {
+    public ElfUserInnerDto getUserByUserId(int userId) throws ElfServiceException {
         logger.info("get user by userId:{}", userId);
 
-        ElfUserDto returnUser = new ElfUserDto();
+        ElfUserInnerDto returnUser = new ElfUserInnerDto();
 
         try {
             ElfUser userByPhoneNum = userMapper.selectByPrimaryKey(userId);
@@ -117,15 +120,18 @@ public class UserAccountServiceImpl implements IUserAccountService {
     }
 
     @Override
-    public ElfUserDto updateUserProfile(ElfUserDto userDto) {
+    public ElfUserUpdateDto updateUserProfile(ElfUserUpdateDto userDto) {
         logger.info("ready to update user profile for id:{}", userDto.getId());
 
         ElfUser elfUser = new ElfUser();
         BeanUtils.copyProperties(userDto, elfUser);
 
-        userMapper.updateByPrimaryKeySelective(elfUser);
-
-        BeanUtils.copyProperties(elfUser, userDto);
+        try {
+            userMapper.updateByPrimaryKeySelective(elfUser);
+        }catch (Exception e){
+            logger.error("update user info for userId:{} error!", userDto.getId(), e);
+            throw new ElfUserServiceException(ElfUserExceptionCode.ERROR_UPDATE_USER_PROFILE);
+        }
 
         return userDto;
     }

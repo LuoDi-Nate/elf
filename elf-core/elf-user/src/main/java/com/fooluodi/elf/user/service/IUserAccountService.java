@@ -1,7 +1,8 @@
 package com.fooluodi.elf.user.service;
 
 import com.fooluodi.elf.common.exception.ElfServiceException;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
+import com.fooluodi.elf.user.dto.ElfUserUpdateDto;
 
 /**
  * Created by di on 15/11/15.
@@ -28,16 +29,16 @@ public interface IUserAccountService {
      * @param phoneNum
      * 如果传入手机号不存在, 抛出serviceException
      *
-     * @return ElfUserDto
+     * @return ElfUserInnerDto
      * */
-    public ElfUserDto getUesrByPhone(String phoneNum) throws ElfServiceException;
+    public ElfUserInnerDto getUesrByPhone(String phoneNum) throws ElfServiceException;
 
     /**
      * 根据userId获取user
      *
      * @param userId
      * */
-    public ElfUserDto getUserByUserId(int userId) throws ElfServiceException;
+    public ElfUserInnerDto getUserByUserId(int userId) throws ElfServiceException;
 
     /**
      * 更新个人资料的服务
@@ -46,5 +47,5 @@ public interface IUserAccountService {
      *
      * @return 修改后的ElfUserDto
      * */
-    public ElfUserDto updateUserProfile(ElfUserDto userDto);
+    public ElfUserUpdateDto updateUserProfile(ElfUserUpdateDto userDto);
 }

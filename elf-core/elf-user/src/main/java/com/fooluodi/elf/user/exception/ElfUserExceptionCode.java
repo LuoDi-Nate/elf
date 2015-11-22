@@ -11,4 +11,7 @@ public enum ElfUserExceptionCode implements IExceptionCode {
 
 	@Desc(value = "查询错误", code = "50200")
 	ERROR_QUERY,
+
+	@Desc(value = "更新个人信息失败", code = "50201")
+	ERROR_UPDATE_USER_PROFILE,
 }

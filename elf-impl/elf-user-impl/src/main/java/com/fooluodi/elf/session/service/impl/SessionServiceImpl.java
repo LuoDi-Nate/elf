@@ -8,7 +8,7 @@ import com.fooluodi.elf.session.exception.ElfSessionServiceException;
 import com.fooluodi.elf.session.mapping.SessionMapper;
 import com.fooluodi.elf.session.model.Session;
 import com.fooluodi.elf.session.service.ISessionService;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import com.fooluodi.elf.user.service.IUserAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +72,7 @@ public class SessionServiceImpl implements ISessionService {
     }
 
     @Override
-    public ElfUserDto getUserByToken(String token) throws ElfServiceException {
+    public ElfUserInnerDto getUserByToken(String token) throws ElfServiceException {
         //TODO 从redis重获取
 
         //如果从redis重未查到用户, 降级去db中查找
@@ -89,7 +89,7 @@ public class SessionServiceImpl implements ISessionService {
             throw new ElfSessionServiceException(ElfSessionExceptionCode.ERROR_GET_USER_BY_TOKEN);
         }
 
-        ElfUserDto userByUserId = userAccountService.getUserByUserId(sessionByToken.getUserId());
+        ElfUserInnerDto userByUserId = userAccountService.getUserByUserId(sessionByToken.getUserId());
 
         return userByUserId;
     }

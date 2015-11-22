@@ -4,7 +4,7 @@ import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.session.constant.SessionConstant;
 import com.fooluodi.elf.session.dto.SessionLogger;
 import com.fooluodi.elf.session.service.ISessionService;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import com.fooluodi.elf.user.dto.UserLogInByPhoneCheckDto;
 import com.fooluodi.elf.user.service.ILogInService;
 import com.fooluodi.elf.user.service.IUserAccountService;
@@ -41,7 +41,7 @@ public class LogInServiceImpl implements ILogInService {
         }
 
         //能走到这里, 该手机号一定对应一个user
-        ElfUserDto uesrByPhone = userAccountService.getUesrByPhone(userLogInByPhoneCheckDto.getTarget_phone());
+        ElfUserInnerDto uesrByPhone = userAccountService.getUesrByPhone(userLogInByPhoneCheckDto.getTarget_phone());
 
         //生成session, 调用session模块, 返回前端
         SessionLogger sessionLogger = new SessionLogger();

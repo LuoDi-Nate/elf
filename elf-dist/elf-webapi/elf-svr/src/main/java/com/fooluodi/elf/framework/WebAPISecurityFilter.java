@@ -3,15 +3,12 @@ package com.fooluodi.elf.framework;
 import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.common.util.JsonHelper;
 import com.fooluodi.elf.session.service.ISessionService;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.web.util.WebUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.*;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -100,7 +97,7 @@ public class WebAPISecurityFilter implements Filter {
         }
 
         // 获得ElfUserDto对象
-        ElfUserDto elfUser = new ElfUserDto();
+        ElfUserInnerDto elfUser = new ElfUserInnerDto();
 
         try {
             elfUser = sessionService.getUserByToken(access_token);

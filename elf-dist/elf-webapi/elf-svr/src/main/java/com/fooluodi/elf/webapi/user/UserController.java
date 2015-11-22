@@ -2,7 +2,8 @@ package com.fooluodi.elf.webapi.user;
 
 import com.fooluodi.elf.framework.ResponseEntity;
 import com.fooluodi.elf.framework.WebAPIBaseController;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
+import com.fooluodi.elf.user.dto.ElfUserUpdateDto;
 import com.fooluodi.elf.user.service.IUserAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class UserController extends WebAPIBaseController {
     @RequestMapping(value = "/current_user", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity<ElfUserDto> getCurrentUser(ElfUserDto userDto) {
+    ResponseEntity<ElfUserInnerDto> getCurrentUser(ElfUserInnerDto userDto) {
         logger.info("get current_user, user:{}", userDto);
         return ResponseEntity.success(userDto);
     }
@@ -36,12 +37,14 @@ public class UserController extends WebAPIBaseController {
     @RequestMapping(value = "/user/info", method = RequestMethod.POST)
     public
     @ResponseBody
-    ResponseEntity<ElfUserDto> updateUserInfo(ElfUserDto userDto) {
-        logger.info("get current_user, user:{}", userDto);
+    ResponseEntity<ElfUserUpdateDto> updateUserInfo(ElfUserInnerDto userInnerDto,ElfUserUpdateDto userDto) {
+        logger.info("get current_user, user:{}", userInnerDto.getId());
 
-        ElfUserDto elfUserDto = userAccountService.updateUserProfile(userDto);
+        userDto.setId(userInnerDto.getId());
 
-        return ResponseEntity.success(elfUserDto);
+        ElfUserUpdateDto elfUserUpdateDto = userAccountService.updateUserProfile(userDto);
+
+        return ResponseEntity.success(elfUserUpdateDto);
     }
 
 

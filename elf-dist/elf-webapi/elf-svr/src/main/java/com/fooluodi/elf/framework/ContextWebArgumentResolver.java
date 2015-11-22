@@ -1,7 +1,6 @@
 package com.fooluodi.elf.framework;
 
-import com.fooluodi.elf.user.dto.ElfUserDto;
-import com.fooluodi.elf.user.model.ElfUser;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -19,7 +18,7 @@ public class ContextWebArgumentResolver implements WebArgumentResolver {
 
 	@Override
 	public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception {
-		if (methodParameter.getParameterType().equals(ElfUserDto.class)) {
+		if (methodParameter.getParameterType().equals(ElfUserInnerDto.class)) {
 			Object request = webRequest.getNativeRequest();
 			if (request instanceof HttpServletRequest) {
 				HttpServletRequest httpRequest = (HttpServletRequest) request;

@@ -2,7 +2,7 @@ package com.fooluodi.elf.session.service;
 
 import com.fooluodi.elf.common.exception.ElfServiceException;
 import com.fooluodi.elf.session.dto.SessionLogger;
-import com.fooluodi.elf.user.dto.ElfUserDto;
+import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 
 /**
  * Created by di on 13/11/15.
@@ -30,5 +30,5 @@ public interface ISessionService {
      *
      * @return 该token对应的User
      * */
-    public ElfUserDto getUserByToken(String token) throws ElfServiceException;
+    public ElfUserInnerDto getUserByToken(String token) throws ElfServiceException;
 }

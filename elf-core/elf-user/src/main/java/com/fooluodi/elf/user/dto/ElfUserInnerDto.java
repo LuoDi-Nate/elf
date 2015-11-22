@@ -2,14 +2,14 @@ package com.fooluodi.elf.user.dto;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author di
  * elf主要User类
  * 除了无密码字段外同Do
+ * 用户filter内部填充User使用, 与前端交互不要使用此类
  * */
-public class ElfUserDto {
+public class ElfUserInnerDto {
     private Integer id;
 
     private String mobile;
@@ -55,7 +55,7 @@ public class ElfUserDto {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ElfUserDto{");
+        final StringBuffer sb = new StringBuffer("ElfUserInnerDto{");
         sb.append("id=").append(id);
         sb.append(", mobile='").append(mobile).append('\'');
         sb.append(", mobileCheck=").append(mobileCheck);
