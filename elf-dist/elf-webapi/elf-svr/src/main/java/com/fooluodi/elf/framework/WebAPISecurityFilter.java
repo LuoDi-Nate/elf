@@ -41,7 +41,8 @@ public class WebAPISecurityFilter implements Filter {
         corsResponse(httpResponse);
 
         // 不验证ping 方法
-        if (urlInWhiteList(httpRequest)){
+        if (true){
+//        if (urlInWhiteList(httpRequest)){
             chain.doFilter(request, response);
             return;
         }

@@ -44,4 +44,6 @@
         </message-converters>
     </annotation-driven>
 
+    <default-servlet-handler/>
+
 </beans:beans>
