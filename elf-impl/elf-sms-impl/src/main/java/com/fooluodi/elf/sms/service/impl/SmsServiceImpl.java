@@ -11,6 +11,7 @@ import com.fooluodi.elf.sms.service.ISmsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import java.util.Objects;
 /**
  * Created by di on 18/11/15.
  */
+@Service
 public class SmsServiceImpl implements ISmsService {
     private static final Logger logger = LoggerFactory.getLogger(SmsServiceImpl.class);
 

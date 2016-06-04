@@ -137,7 +137,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fooluodi.elf.session.model.Session" >
+  <update id="updateByPrimaryKey" parameterType="com.fooluodi.elf.session.model.Session">
     update elf_session
     set user_id = #{userId,jdbcType=INTEGER},
       token = #{token,jdbcType=VARCHAR},

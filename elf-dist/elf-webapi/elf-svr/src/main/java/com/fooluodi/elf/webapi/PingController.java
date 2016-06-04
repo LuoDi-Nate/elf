@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.UUID;
+
 /**
  * PingController
  * \ * @author di
@@ -23,8 +28,21 @@ public class PingController {
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity<?> ping() {
+    ResponseEntity<?> ping(HttpServletResponse response) throws IOException {
         logger.info("ping");
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < 100000; i++) {
+            stringBuilder.append(UUID.randomUUID().toString() + "\n");
+        }
+
+        //设置返回类型
+        response.setContentType("multipart/form-data");
+        response.setHeader("Content-Disposition", "attachment;fileName=" + "a.txt");
+
+        ServletOutputStream outputStream = response.getOutputStream();
+        outputStream.write(stringBuilder.toString().getBytes());
+
         return ResponseEntity.success("hi!");
     }
 

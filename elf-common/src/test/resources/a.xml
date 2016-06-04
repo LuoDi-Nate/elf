@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<alipay>
+    <is_success>T</is_success>
+    <request>
+        <param name="service">alipay.batchpay.bptb.detail.query</param> <param name="partner">2088101114306999</param>
+        <param name="_input_charset">UTF-8</param>
+        <param name="file_name">建行20110812005.xls </param>
+        <param name="serial_no">10</param>
+        <param name="status">INIT</param>
+        <param name="bank_account_no">6987440120378987519</param> <param name="page_num">1</param>
+        <param name="sign_type">MD5</param>
+        <param name="sign">21b22c4f27e0327ffc3f0aa25979cd25</param>
+    </request>
+    <response>
+        <alipay_results>
+            <alipay_result>
+                <baseInfo>
+                    <fileName>建行 20110812005.xls</fileName> <pageSize>1</pageSize> <pageNum>1</pageNum> <totalItemCount>1</totalItemCount> <totalPageCount>1</totalPageCount>
+                </baseInfo>
+                <detailList>
+                    <detailItem>
+                        <userSerialNo>10</userSerialNo> <bankAccountName>李四</bankAccountName> <bankAccountNo>6987440120378987519</bankAccountNo> <bankName>中国建设银行</bankName>
+                        支付宝(中国)网络技术有限公司 版权所有| 版本:1.3 第 11 页批量付款到银行账户-明细查询接口
+
+                        <bankProvince>上海市</bankProvince> <bankCity>上海市</bankCity> <bankBranch>某某支行</bankBranch> <amount>10.00</amount> <bankAccountType>2</bankAccountType> <status> INIT</status> <instructionId>2214936</instructionId> <refundMark>T</refundMark> <dealMemo>该银行账号长度错误</dealMemo> <recordMemo>ATS 批量代发</recordMemo>
+                    </detailItem>
+                </detailList>
+            </alipay_result>
+        </alipay_results>
+    </response>
+    <sign>c697227af2400d5d02868965e886913e</sign>
+    <sign_type>MD5</sign_type>
+</alipay>
