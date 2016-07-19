@@ -82,9 +82,17 @@ public class ValidateHelper {
                     classSetMap.get(annotation).add(field);
                 }
             }
-
         }
 
+        //调用各自handler 校验
+        for (Map.Entry<Class, Set<Field>> entry : classSetMap.entrySet()){
+            Set<Field> fieldSet = entry.getValue();
+
+            AbstractHandler handler = handlers.get(entry.getKey());
+            for (Field field : fieldSet) {
+                handler.handle(bean, field, forceException, exception, isDeep);
+            }
+        }
 
     }
 

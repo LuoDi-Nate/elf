@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
  */
 public class MaxHandler extends AbstractHandler {
 
-    <T extends Field, E extends RuntimeException> void handle(String beanName, T field, boolean forceException, E exception, boolean isDeep) {
+    <T, F extends Field, E extends RuntimeException> void handle(T originBean, F field, boolean forceException, E exception, boolean isDeep) {
 
     }
 }
