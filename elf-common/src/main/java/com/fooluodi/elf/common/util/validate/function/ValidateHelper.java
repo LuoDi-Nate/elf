@@ -8,6 +8,7 @@ import com.fooluodi.elf.common.util.validate.function.handlers.AbstractHandler;
 import com.fooluodi.elf.common.util.validate.function.handlers.MaxHandler;
 import com.fooluodi.elf.common.util.validate.function.handlers.NotNullHandler;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -65,10 +66,24 @@ public class ValidateHelper {
 
         String beanClassName = bean.getClass().getName();
 
-        Field[] fields = bean.getClass().getFields();
-
         //根据effectiveAnnos 遍历bean的field 按照effectiveAnnos归类
+        Map<Class, Set<Field>> classSetMap = new HashMap<Class, Set<Field>>();
 
+        for (Class effectiveAnno : effectiveAnnos) {
+            classSetMap.put(effectiveAnno, new HashSet<Field>());
+        }
+
+        //便利bean中所有field, 添加到相应set中
+        Field[] fields = bean.getClass().getFields();
+        for (Field field : fields) {
+            Annotation[] annotations = field.getAnnotations();
+            for (Annotation annotation : annotations) {
+                if (effectiveAnnos.contains(annotation)){
+                    classSetMap.get(annotation).add(field);
+                }
+            }
+
+        }
 
 
     }
