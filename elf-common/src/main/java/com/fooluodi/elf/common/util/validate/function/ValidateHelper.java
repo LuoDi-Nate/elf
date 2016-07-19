@@ -8,6 +8,7 @@ import com.fooluodi.elf.common.util.validate.function.handlers.AbstractHandler;
 import com.fooluodi.elf.common.util.validate.function.handlers.MaxHandler;
 import com.fooluodi.elf.common.util.validate.function.handlers.NotNullHandler;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -62,7 +63,13 @@ public class ValidateHelper {
     static <T, E extends RuntimeException> void validate(T bean, boolean isDeep, boolean forceException, E exception) {
         validateNull(bean, isDeep, forceException, exception);
 
-        String beanName = bean.getClass().getName();
+        String beanClassName = bean.getClass().getName();
+
+        Field[] fields = bean.getClass().getFields();
+
+        //根据effectiveAnnos 遍历bean的field 按照effectiveAnnos归类
+
+
 
     }
 
