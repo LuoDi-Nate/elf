@@ -1,6 +1,8 @@
 package com.fooluodi.elf.webapi;
 
+import com.fooluodi.elf.common.util.validate.function.ValidateHelper;
 import com.fooluodi.elf.framework.ResponseEntity;
+import com.fooluodi.elf.session.model.Session;
 import com.fooluodi.elf.user.dto.ElfUserInnerDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,5 +55,11 @@ public class PingController {
         logger.info("test get user by token, user:{}", user);
 
         return ResponseEntity.success(user);
+    }
+
+    public static void main(String[] args) {
+        Session session = new Session();
+        session.setId(1L);
+        ValidateHelper.validate(session);
     }
 }

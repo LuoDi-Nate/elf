@@ -1,5 +1,6 @@
 package com.fooluodi.elf.session.model;
 
+import com.fooluodi.elf.common.util.validate.annotation.NotNull;
 import com.fooluodi.elf.session.constant.SessionConstant;
 
 import java.sql.Timestamp;
@@ -9,6 +10,7 @@ import java.sql.Timestamp;
  * Session对应的do
  * */
 public class Session {
+    @NotNull
     private Long id;
 
     private Integer userId;

@@ -43,11 +43,11 @@ public class ValidateHelper {
         handlers.put(NotNull.class, new NotNullHandler());
     }
 
-    static <T, E extends Throwable> void validate(T dto) {
+    public static <T, E extends Throwable> void validate(T dto) {
         validate(dto, DEFAULT_IS_DEEP);
     }
 
-    static <T, E extends Throwable> void validate(T dto, boolean isDeep) {
+    public static <T, E extends Throwable> void validate(T dto, boolean isDeep) {
         validate(dto, isDeep, DEFAULT_FORCE_EXCEPTION, DEFAULT_EXCEPTION);
     }
 
@@ -61,7 +61,7 @@ public class ValidateHelper {
      * @param <T> Bean本身
      * @param <E> 自定义异常
      */
-    static <T, E extends RuntimeException> void validate(T bean, boolean isDeep, boolean forceException, E exception) {
+    public static <T, E extends RuntimeException> void validate(T bean, boolean isDeep, boolean forceException, E exception) {
         validateNull(bean, isDeep, forceException, exception);
 
         String beanClassName = bean.getClass().getName();
@@ -74,7 +74,7 @@ public class ValidateHelper {
         }
 
         //便利bean中所有field, 添加到相应set中
-        Field[] fields = bean.getClass().getFields();
+        Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field : fields) {
             Annotation[] annotations = field.getAnnotations();
             for (Annotation annotation : annotations) {
