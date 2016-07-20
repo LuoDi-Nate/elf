@@ -98,7 +98,7 @@ public class ValidateHelper {
     //validate
     private static final <T, E extends RuntimeException> void validateNull(T bean, boolean isDeep, boolean forceException, E exception) {
         if (isDeep) {
-            notNull(forceException);
+            notNull(exception);
         }
         notNull(bean);
     }
