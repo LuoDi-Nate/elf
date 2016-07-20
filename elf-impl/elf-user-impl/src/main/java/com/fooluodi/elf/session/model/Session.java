@@ -13,6 +13,7 @@ public class Session {
     @NotNull
     private Long id;
 
+    @NotNull
     private Integer userId;
 
     private String token;
