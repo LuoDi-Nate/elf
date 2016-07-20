@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##ELF
 * what is elf?
 
@@ -37,3 +38,5 @@ mvn clean install -Dmaven.test.skip=true
 ```
 * 将elf-svr.war丢到tomcat/webapp下运行.
             
+=======
+>>>>>>> 90a8581b1e4c898659c59013b759043f70459d38
