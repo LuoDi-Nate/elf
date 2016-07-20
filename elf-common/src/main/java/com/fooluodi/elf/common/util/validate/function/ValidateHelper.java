@@ -28,7 +28,7 @@ public class ValidateHelper {
     /**
      * effective annotations
      * */
-    private static final Set<Class> effectiveAnnos = new HashSet(Arrays.asList(
+    private static final List<Class> effectiveAnnos = new ArrayList<Class>(Arrays.asList(
             Max.class,
             Min.class,
             NotNull.class
@@ -76,10 +76,16 @@ public class ValidateHelper {
         //便利bean中所有field, 添加到相应set中
         Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field : fields) {
-            Annotation[] annotations = field.getAnnotations();
-            for (Annotation annotation : annotations) {
-                if (effectiveAnnos.contains(annotation)){
-                    classSetMap.get(annotation).add(field);
+//            Annotation[] annotations = field.getAnnotations();
+//            for (Annotation annotation : annotations) {
+//                if (effectiveAnnos.contains(annotation.getClass())){
+//                    classSetMap.get(annotation).add(field);
+//                }
+//            }
+            for (Class anno : effectiveAnnos) {
+                Annotation annotation = field.getAnnotation(anno);
+                if (annotation != null){
+                    classSetMap.get(anno).add(field);
                 }
             }
         }
