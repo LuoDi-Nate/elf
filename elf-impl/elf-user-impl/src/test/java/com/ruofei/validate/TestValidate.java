@@ -12,7 +12,7 @@ public class TestValidate {
         RequestDto requestDto = new RequestDto();
         requestDto.setName("sssss");
         requestDto.setId(2000L);
-        requestDto.setNum(10);
+        requestDto.setNum(1000);
 
         long before = System.currentTimeMillis();
         for (int i=0; i<10000; i++){
@@ -23,7 +23,7 @@ public class TestValidate {
 
 
     public void ping(RequestDto requestDto){
-        ValidateHelper.validate(requestDto);
+        ValidateHelper.validate(requestDto,false,true,new NullPointerException());
 
         //System.out.println("------- "+requestDto);
     }
