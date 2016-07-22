@@ -44,6 +44,12 @@ public class ValidateHelper {
         handlers.put(NotNull.class, new NotNullHandler());
     }
 
+    /**
+     * a hash map to cache class 's structure
+     * when a new bean call this util , the structure of this bean will be cached
+     */
+    private static final Map<Class, Map<Class, Set<Field>>> classStructureCache = new HashMap<Class, Map<Class, Set<Field>>>();
+
     public static <T, E extends Throwable> void validate(T dto) {
         validate(dto, DEFAULT_IS_DEEP);
     }
@@ -65,23 +71,8 @@ public class ValidateHelper {
     public static <T, E extends RuntimeException> void validate(T bean, boolean isDeep, boolean forceException, E exception) {
         validateNull(bean, isDeep, forceException, exception);
 
-        //根据effectiveAnnos 遍历bean的field 按照effectiveAnnos归类
-        Map<Class, Set<Field>> classSetMap = new HashMap<Class, Set<Field>>();
-
-        for (Class effectiveAnno : effectiveAnnos) {
-            classSetMap.put(effectiveAnno, new HashSet<Field>());
-        }
-
-        //便利bean中所有field, 添加到相应set中
-        Field[] fields = bean.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            for (Class anno : effectiveAnnos) {
-                Annotation annotation = field.getAnnotation(anno);
-                if (annotation != null) {
-                    classSetMap.get(anno).add(field);
-                }
-            }
-        }
+        //通过缓存获取bean结构
+        Map<Class, Set<Field>> classSetMap = analyseBean(bean);
 
         //调用各自handler 校验
         for (Map.Entry<Class, Set<Field>> entry : classSetMap.entrySet()) {
@@ -92,8 +83,40 @@ public class ValidateHelper {
                 handler.handle(bean, field, forceException, exception, isDeep);
             }
         }
-
     }
+
+    //cache
+    private static <T> Map<Class, Set<Field>> analyseBean(T bean) {
+        Class<?> beanClass = bean.getClass();
+
+        Map<Class, Set<Field>> classSetMap = classStructureCache.get(beanClass);
+
+        if (classSetMap == null) {
+            classSetMap = new HashMap<Class, Set<Field>>();
+
+            //根据effectiveAnnos 遍历bean的field 按照effectiveAnnos归类
+            for (Class effectiveAnno : effectiveAnnos) {
+                classSetMap.put(effectiveAnno, new HashSet<Field>());
+            }
+
+            //遍历bean中所有field, 添加到相应set中
+            Field[] fields = bean.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                for (Class anno : effectiveAnnos) {
+                    Annotation annotation = field.getAnnotation(anno);
+                    if (annotation != null) {
+                        classSetMap.get(anno).add(field);
+                    }
+                }
+            }
+
+            //击穿缓存, 讲该bean加入缓存
+            classStructureCache.put(beanClass, classSetMap);
+        }
+
+        return classSetMap;
+    }
+
 
     //validate
     private static final <T, E extends RuntimeException> void validateNull(T bean, boolean isDeep, boolean forceException, E exception) {

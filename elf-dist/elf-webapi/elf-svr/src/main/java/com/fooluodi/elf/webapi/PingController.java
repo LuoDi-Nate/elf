@@ -60,6 +60,12 @@ public class PingController {
     public static void main(String[] args) {
         Session session = new Session();
         session.setId(1L);
-        ValidateHelper.validate(session);
+        session.setUserId(1);
+//        ValidateHelper.validate(session);
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            ValidateHelper.validate(session);
+        }
+        System.out.println(System.currentTimeMillis() - start);
     }
 }
