@@ -47,7 +47,8 @@ public class ValidateHelper {
     /**
      * a hash map to cache class 's structure
      * when a new bean call this util , the structure of this bean will be cached
-     *
+     * to reduce reflection 's time
+     * <p>
      * 感谢政委的想法, 特此加一行注释
      */
     private static final Map<Class, Map<Class, Set<Field>>> classStructureCache = new HashMap<Class, Map<Class, Set<Field>>>();
